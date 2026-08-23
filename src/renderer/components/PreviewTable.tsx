@@ -443,41 +443,41 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
         </div>
       )}
 
-      {/* Full-Size Image Lightbox Modal with Backdrop Dimming & 4px Minimal Corners */}
+      {/* Full-Size Image Lightbox Modal with Cinematic Backdrop */}
       {previewImageModalFile && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4 animate-fade-in cursor-pointer"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-fade-in cursor-pointer"
           onClick={() => setPreviewImageModalFile(null)}
         >
           <div
-            className="relative max-w-4xl max-h-[90vh] w-full flex flex-col items-center justify-center p-3 bg-[var(--bg-panel)] border border-[var(--border-subtle)] rounded-[6px] shadow-2xl overflow-hidden cursor-default animate-modal-pop"
+            className="relative max-w-[92vw] max-h-[92vh] flex flex-col items-center justify-center p-3.5 bg-[#111114] text-zinc-100 border border-zinc-800 rounded-[10px] shadow-2xl overflow-hidden cursor-default animate-modal-pop"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Top-Right Red Close X Button */}
             <button
               type="button"
               onClick={() => setPreviewImageModalFile(null)}
-              className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-rose-500/20 hover:bg-rose-500/40 text-rose-500 border border-rose-500/50 flex items-center justify-center transition-all duration-150 cursor-pointer shadow-lg active:scale-90"
+              className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-rose-500/20 hover:bg-rose-500/40 text-rose-400 border border-rose-500/50 flex items-center justify-center transition-all duration-150 cursor-pointer shadow-lg active:scale-90"
               title="Đóng xem ảnh (hoặc bấm ra ngoài vùng mờ đen)"
             >
               <X className="w-4 h-4 stroke-[2.5]" />
             </button>
 
-            {/* Large Image View — supports RAW thumbnail extraction */}
-            <div className="max-h-[75vh] w-full flex items-center justify-center overflow-hidden rounded-[4px] bg-[var(--bg-card-inset)]">
+            {/* Large Image View — supports high-res RAW preview extraction */}
+            <div className="max-h-[78vh] max-w-[88vw] flex items-center justify-center overflow-hidden rounded-[6px] bg-[#09090b] border border-zinc-800/80 p-1 min-h-[320px] min-w-[320px]">
               {isLoadingRaw ? (
-                <div className="p-12 flex flex-col items-center justify-center space-y-3 text-[var(--text-muted)]">
+                <div className="p-12 flex flex-col items-center justify-center space-y-3 text-zinc-400">
                   <div className="w-10 h-10 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
-                  <p className="text-xs font-mono">Đang trích xuất ảnh xem trước từ tệp RAW...</p>
+                  <p className="text-xs font-mono">Đang trích xuất ảnh xem trước độ phân giải cao từ tệp RAW...</p>
                 </div>
               ) : rawThumbnailUrl ? (
                 <img
                   src={rawThumbnailUrl}
                   alt={previewImageModalFile.filename || previewImageModalFile.name}
-                  className="max-h-[75vh] max-w-full object-contain rounded-[4px] shadow-2xl transition-transform duration-200"
+                  className="max-h-[76vh] max-w-[86vw] h-auto w-auto object-contain rounded-[4px] shadow-2xl transition-transform duration-200"
                 />
               ) : RAW_EXTENSIONS.includes((previewImageModalFile.extension || '').toLowerCase().replace(/^\./, '')) ? (
-                <div className="p-12 flex flex-col items-center justify-center space-y-3 text-[var(--text-muted)]">
+                <div className="p-12 flex flex-col items-center justify-center space-y-3 text-zinc-400">
                   <FileImage className="w-16 h-16 text-amber-500" />
                   <p className="text-xs font-mono">Không thể trích xuất ảnh xem trước từ tệp RAW này</p>
                 </div>
@@ -485,10 +485,10 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
                 <img
                   src={getFileThumbnailUrl(previewImageModalFile)}
                   alt={previewImageModalFile.filename || previewImageModalFile.name}
-                  className="max-h-[75vh] max-w-full object-contain rounded-[4px] shadow-2xl transition-transform duration-200"
+                  className="max-h-[76vh] max-w-[86vw] h-auto w-auto object-contain rounded-[4px] shadow-2xl transition-transform duration-200"
                 />
               ) : (
-                <div className="p-12 flex flex-col items-center justify-center space-y-3 text-[var(--text-muted)]">
+                <div className="p-12 flex flex-col items-center justify-center space-y-3 text-zinc-400">
                   <FileImage className="w-16 h-16 text-amber-500" />
                   <p className="text-xs font-mono">Không hỗ trợ xem trực tiếp tệp này</p>
                 </div>
@@ -496,16 +496,16 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
             </div>
 
             {/* Bottom Info Toolbar */}
-            <div className="w-full pt-3 px-3 flex flex-wrap items-center justify-between gap-3 text-xs font-mono border-t border-[var(--border-subtle)] mt-2">
-              <div className="flex items-center gap-2 text-[var(--text-main)] font-semibold truncate">
-                <span className="text-amber-500 font-bold">{previewImageModalFile.filename || previewImageModalFile.name}</span>
+            <div className="w-full pt-3 px-3 flex flex-wrap items-center justify-between gap-3 text-xs font-mono border-t border-zinc-800/80 mt-2.5">
+              <div className="flex items-center gap-2 text-zinc-200 font-semibold truncate">
+                <span className="text-amber-400 font-bold">{previewImageModalFile.filename || previewImageModalFile.name}</span>
                 <span className="badge-pro badge-amber">.{(previewImageModalFile.extension || '').toUpperCase().replace(/^\./, '')}</span>
               </div>
 
-              <div className="flex items-center gap-3 text-[var(--text-muted)] text-[11px]">
+              <div className="flex items-center gap-3 text-zinc-400 text-[11px]">
                 <span>Dung lượng: {formatFileSize(previewImageModalFile.sizeBytes ?? previewImageModalFile.size ?? 0)}</span>
                 <span>•</span>
-                <span className="truncate max-w-xs" title={previewImageModalFile.sourcePath || previewImageModalFile.path}>{previewImageModalFile.sourcePath || previewImageModalFile.path}</span>
+                <span className="truncate max-w-md text-zinc-400" title={previewImageModalFile.sourcePath || previewImageModalFile.path}>{previewImageModalFile.sourcePath || previewImageModalFile.path}</span>
               </div>
             </div>
           </div>

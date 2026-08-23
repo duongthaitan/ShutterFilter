@@ -38,18 +38,7 @@ export async function getPhotoDateTaken(filePath: string): Promise<string | null
 }
 
 export async function extractRawThumbnail(filePath: string): Promise<string | null> {
-  // Engine 1: Try exifr.thumbnail
-  try {
-    const thumbBuffer = await exifr.thumbnail(filePath);
-    if (thumbBuffer && thumbBuffer.byteLength > 0) {
-      const base64 = Buffer.from(thumbBuffer).toString('base64');
-      return `data:image/jpeg;base64,${base64}`;
-    }
-  } catch (err) {
-    // Engine 1 failed or unsupported format in exifr
-  }
-
-  // Engine 2: Deep Binary JPEG Segment Parser for RAW formats (.CR2, .CR3, .ARW, .NEF, .DNG, .RAF, .ORF, .PEF, .RW2)
+  // Deep Binary JPEG Segment Parser for all Camera RAW formats (.CR2, .CR3, .ARW, .NEF, .DNG, .RAF, .ORF, .PEF, .RW2)
   try {
     const jpegBuffer = await extractEmbeddedJpegBinary(filePath);
     if (jpegBuffer && jpegBuffer.length > 0) {
@@ -60,7 +49,6 @@ export async function extractRawThumbnail(filePath: string): Promise<string | nu
       }
 
       // If JPEG preview > 4MB (full resolution RAW preview), write to TEMP folder and return file:// URL
-      // so Chromium can render large JPEGs without data-URI size limits
       const tempDir = os.tmpdir();
       const safeName = path.basename(filePath).replace(/[^a-zA-Z0-9._-]/g, '_');
       const tempPath = path.join(tempDir, `shutterfilter_raw_${safeName}.jpg`);
@@ -68,15 +56,15 @@ export async function extractRawThumbnail(filePath: string): Promise<string | nu
       return `file:///${tempPath.replace(/\\/g, '/')}`;
     }
   } catch (err) {
-    console.error('Engine 2 RAW extraction error:', err);
+    console.error('RAW extraction error:', err);
   }
 
   return null;
 }
 
 /**
- * Scans binary data of a camera RAW file using deterministic JPEG segment parsing
- * to locate and extract embedded JPEG preview streams.
+ * Scans binary data of any camera RAW file (.CR2, .CR3, .ARW, .NEF, .DNG, .RAF, .ORF, .PEF, .RW2)
+ * parses JPEG segment structures and returns the highest resolution preview JPEG found.
  */
 async function extractEmbeddedJpegBinary(filePath: string): Promise<Buffer | null> {
   let handle: fs.promises.FileHandle | null = null;
@@ -93,16 +81,21 @@ async function extractEmbeddedJpegBinary(filePath: string): Promise<Buffer | nul
     await handle.close();
     handle = null;
 
-    const jpegs: { start: number; length: number }[] = [];
+    const jpegs: { pos: number; len: number; area: number }[] = [];
     let pos = 0;
 
     while (pos < buffer.length - 4) {
       // Look for JPEG SOI marker: 0xFF 0xD8 0xFF
       if (buffer[pos] === 0xFF && buffer[pos + 1] === 0xD8 && buffer[pos + 2] === 0xFF) {
-        const length = parseJpegLength(buffer, pos);
-        if (length && length > 15 * 1024) {
-          jpegs.push({ start: pos, length });
-          pos += length;
+        const len = parseJpegLength(buffer, pos);
+        if (len && len > 15 * 1024) {
+          const sub = buffer.subarray(pos, pos + len);
+          const dim = getJpegDimensions(sub);
+          // Only keep previews with dimension at least 400px (ignores 160x120 EXIF thumbnails)
+          if (dim.w >= 400 || dim.h >= 400) {
+            jpegs.push({ pos, len, area: dim.w * dim.h });
+          }
+          pos += (len || 1);
           continue;
         }
       }
@@ -110,18 +103,10 @@ async function extractEmbeddedJpegBinary(filePath: string): Promise<Buffer | nul
     }
 
     if (jpegs.length > 0) {
-      // Prioritize crisp medium previews (100KB to 5MB) for fast URI rendering in Electron
-      const idealCandidates = jpegs.filter(j => j.length >= 100 * 1024 && j.length <= 5 * 1024 * 1024);
-      if (idealCandidates.length > 0) {
-        idealCandidates.sort((a, b) => b.length - a.length);
-        const best = idealCandidates[0];
-        return buffer.subarray(best.start, best.start + best.length);
-      }
-
-      // Fallback to largest preview overall
-      jpegs.sort((a, b) => b.length - a.length);
-      const largest = jpegs[0];
-      return buffer.subarray(largest.start, largest.start + largest.length);
+      // Sort by pixel area descending to get highest resolution photo preview
+      jpegs.sort((a, b) => b.area - a.area);
+      const best = jpegs[0];
+      return buffer.subarray(best.pos, best.pos + best.len);
     }
   } catch (err) {
     if (handle) {
@@ -129,6 +114,22 @@ async function extractEmbeddedJpegBinary(filePath: string): Promise<Buffer | nul
     }
   }
   return null;
+}
+
+/**
+ * Extracts width and height from JPEG SOF0/SOF2 header.
+ */
+function getJpegDimensions(buf: Buffer): { w: number; h: number } {
+  let pos = 0;
+  while (pos < buf.length - 8) {
+    if (buf[pos] === 0xFF && (buf[pos + 1] === 0xC0 || buf[pos + 1] === 0xC2)) {
+      const h = buf.readUInt16BE(pos + 5);
+      const w = buf.readUInt16BE(pos + 7);
+      return { w, h };
+    }
+    pos++;
+  }
+  return { w: 0, h: 0 };
 }
 
 /**
