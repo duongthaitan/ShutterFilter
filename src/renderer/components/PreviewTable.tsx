@@ -32,6 +32,8 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
   const [confirmModalOpen, setConfirmModalOpen] = useState(false);
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
   const [previewImageModalFile, setPreviewImageModalFile] = useState<FileEntry | null>(null);
+  const [rawThumbnailUrl, setRawThumbnailUrl] = useState<string | null>(null);
+  const [isLoadingRaw, setIsLoadingRaw] = useState(false);
 
   // Pagination states for 10,000+ images high performance
   const [currentPage, setCurrentPage] = useState(1);
@@ -56,6 +58,32 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
   useEffect(() => {
     setCurrentPage(1);
   }, [searchTerm, previewResult]);
+
+  // Auto-load RAW thumbnail when lightbox opens for a RAW file
+  const RAW_EXTENSIONS = ['arw', 'cr2', 'cr3', 'nef', 'dng', 'raf', 'orf', 'rw2'];
+  useEffect(() => {
+    if (!previewImageModalFile) {
+      setRawThumbnailUrl(null);
+      setIsLoadingRaw(false);
+      return;
+    }
+    const ext = (previewImageModalFile.extension || '').toLowerCase().replace(/^\./, '');
+    const filePath = previewImageModalFile.sourcePath || previewImageModalFile.path || '';
+    if (RAW_EXTENSIONS.includes(ext) && filePath && window.electronAPI?.getRawThumbnail) {
+      setIsLoadingRaw(true);
+      setRawThumbnailUrl(null);
+      window.electronAPI.getRawThumbnail(filePath)
+        .then((url) => {
+          setRawThumbnailUrl(url);
+        })
+        .catch(() => {
+          setRawThumbnailUrl(null);
+        })
+        .finally(() => {
+          setIsLoadingRaw(false);
+        });
+    }
+  }, [previewImageModalFile]);
 
   const totalPages = Math.ceil(filteredMatches.length / pageSize) || 1;
 
@@ -435,9 +463,20 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
               <X className="w-4 h-4 stroke-[2.5]" />
             </button>
 
-            {/* Large Image View */}
+            {/* Large Image View — supports RAW thumbnail extraction */}
             <div className="max-h-[75vh] w-full flex items-center justify-center overflow-hidden rounded-[4px] bg-[var(--bg-card-inset)]">
-              {getFileThumbnailUrl(previewImageModalFile) && !failedImages[previewImageModalFile.id || previewImageModalFile.sourcePath || ''] ? (
+              {isLoadingRaw ? (
+                <div className="p-12 flex flex-col items-center justify-center space-y-3 text-[var(--text-muted)]">
+                  <div className="w-10 h-10 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
+                  <p className="text-xs font-mono">Đang trích xuất ảnh xem trước từ tệp RAW...</p>
+                </div>
+              ) : rawThumbnailUrl ? (
+                <img
+                  src={rawThumbnailUrl}
+                  alt={previewImageModalFile.filename || previewImageModalFile.name}
+                  className="max-h-[75vh] max-w-full object-contain rounded-[4px] shadow-2xl transition-transform duration-200"
+                />
+              ) : getFileThumbnailUrl(previewImageModalFile) && !failedImages[previewImageModalFile.id || previewImageModalFile.sourcePath || ''] ? (
                 <img
                   src={getFileThumbnailUrl(previewImageModalFile)}
                   alt={previewImageModalFile.filename || previewImageModalFile.name}
@@ -446,7 +485,7 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
               ) : (
                 <div className="p-12 flex flex-col items-center justify-center space-y-3 text-[var(--text-muted)]">
                   <FileImage className="w-16 h-16 text-amber-500" />
-                  <p className="text-xs font-mono">File tệp RAW/không hỗ trợ xem trực tiếp trên ứng dụng</p>
+                  <p className="text-xs font-mono">Không thể trích xuất ảnh xem trước từ tệp này</p>
                 </div>
               )}
             </div>

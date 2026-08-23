@@ -144,4 +144,10 @@ export function setupIpcHandlers() {
   ipcMain.handle('history:undo', async (_, runId: string) => {
     return await undoRun(runId);
   });
+
+  // RAW thumbnail extraction
+  ipcMain.handle('file:rawThumbnail', async (_, filePath: string) => {
+    const { extractRawThumbnail } = await import('./exifReader');
+    return await extractRawThumbnail(filePath);
+  });
 }

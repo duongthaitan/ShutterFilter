@@ -35,6 +35,20 @@ export async function getPhotoDateTaken(filePath: string): Promise<string | null
   }
 }
 
+export async function extractRawThumbnail(filePath: string): Promise<string | null> {
+  try {
+    // exifr.thumbnailUrl extracts the embedded JPEG preview from RAW files
+    const thumbBuffer = await exifr.thumbnail(filePath);
+    if (thumbBuffer && thumbBuffer.byteLength > 0) {
+      const base64 = Buffer.from(thumbBuffer).toString('base64');
+      return `data:image/jpeg;base64,${base64}`;
+    }
+  } catch (err) {
+    // File doesn't contain an embedded thumbnail, or exifr can't read it
+  }
+  return null;
+}
+
 function formatDate(d: Date): string {
   const pad = (n: number) => n.toString().padStart(2, '0');
   const year = d.getFullYear();

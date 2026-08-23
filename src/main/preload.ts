@@ -56,6 +56,9 @@ export const electronAPI = {
 
   undoRun: (runId: string): Promise<UndoResult> =>
     ipcRenderer.invoke('history:undo', runId),
+
+  getRawThumbnail: (filePath: string): Promise<string | null> =>
+    ipcRenderer.invoke('file:rawThumbnail', filePath),
 };
 
 contextBridge.exposeInMainWorld('electronAPI', electronAPI);
