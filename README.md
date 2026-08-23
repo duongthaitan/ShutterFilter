@@ -9,18 +9,21 @@
 
 ---
 
-## 📐 Giao Diện Trực Quan (Interface Overview)
+## 📐 Giao Diện Trực Quan Cập Nhật Mới Nhất (Latest UI Preview)
 
-### 1. Giao Diện Lọc & Tự Động Khớp Danh Sách Ảnh (Dark Mode)
-![Main Workspace](docs/images/dark_mode_ui.png)
+### 1. Giao Diện Tối (Studio Dark Mode 🌙)
+![Dark Mode Workspace](docs/images/dark_mode_ui.png)
 
-### 2. Xem Trước Danh Sách Ảnh Khớp Chi Tiết & Khung Tìm Kiếm
-![Filter Preview](docs/images/filter_preview.png)
+### 2. Giao Diện Sáng (Clean Studio Light Mode ☀️)
+![Light Mode Workspace](docs/images/light_mode_ui.png)
 
-### 3. Tiến Trình Thực Thi Realtime & Mở Thư Mục / Import Photoshop
+### 3. Xem Trước Danh Sách Ảnh Khớp Chi Tiết & Bộ Lọc Đuôi Ảnh (Chế độ Tắt Mờ `[]` Mặc Định)
+![Filter Matching Preview](docs/images/filter_preview.png)
+
+### 4. Cửa Sổ Thực Thi Realtime & Tích Hợp Adobe Photoshop
 ![Execution Progress Modal](docs/images/progress_modal.png)
 
-### 4. Quản Lý Lịch Sử Lọc & Khôi Phục (Undo 1-Click)
+### 5. Quản Lý Lịch Sử Lọc & Khôi Phục (Undo 1-Click)
 ![History and Undo View](docs/images/history_undo.png)
 
 ---
@@ -44,7 +47,7 @@ Trong quy trình làm việc của nhiếp ảnh gia và studio chụp ảnh chu
 | **Tốc độ phản hồi UI** | 60FPS mượt mà (Tăng tốc GPU, Phân trang 50/100/250/500 dòng) |
 | **Định dạng hỗ trợ** | RAW (`.arw`, `.cr2`, `.cr3`, `.nef`, `.dng`, `.raf`, `.orf`, `.rw2`) + Bitmap (`.jpg`, `.jpeg`, `.png`, `.webp`, `.tiff`, `.bmp`) |
 | **Lọc loại trừ Video** | Tự động loại bỏ tệp video (`.mp4`, `.mov`, `.avi`, `.mkv`) khỏi tiến trình |
-| **Chế độ giao diện** | Chuyển đổi linh hoạt **Dark Mode 🌙** (Studio Dark) & **Light Mode ☀️** (Studio Light) |
+| **Chế độ giao diện** | Chuyển đổi linh hoạt **Dark Mode 🌙** (Studio Dark) & **Light Mode ☀️** (Studio Light) ngay tại thanh Header |
 | **Gói thực thi** | Single-File Executable `ShutterFilter_SingleFile.exe` (~116MB, không cần cài đặt) |
 
 ---
