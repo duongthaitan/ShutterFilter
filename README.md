@@ -21,8 +21,8 @@
 <br/>
 
 <p align="center">
-  Công cụ desktop lọc ảnh hàng loạt theo danh sách tên file.<br/>
-  Dành cho nhiếp ảnh gia và studio cần tách nhanh ảnh đã chọn từ kho dữ liệu lớn.
+  Công cụ desktop lọc & phân loại ảnh hàng loạt theo danh sách tên file.<br/>
+  Thiết kế tối ưu cho Nhiếp ảnh gia, Studio & Chuyên viên hậu kỳ làm việc với kho dữ liệu RAW lớn.
 </p>
 
 <br/>
@@ -31,14 +31,14 @@
 <tr>
 <td width="50%">
 
-**Giao diện Tối**
+**Giao diện Tối (Studio Dark)**
 
 ![Dark Mode](docs/images/dark_mode_ui.png)
 
 </td>
 <td width="50%">
 
-**Giao diện Sáng**
+**Giao diện Sáng (Studio Light)**
 
 ![Light Mode](docs/images/light_mode_ui.png)
 
@@ -71,6 +71,8 @@ flowchart TD
     (tùy chọn: .jpg, .arw, .cr3...)"]
     E --> F{"📊 Xem trước kết quả
     trong bảng phân trang"}
+    F -->|Click Xem Ảnh| RAW["🖼️ Đọc & Giải mã RAW
+    trích xuất preview cao nhất"]
     F -->|Copy| G["📁 Sao chép ảnh sang đích
     (giữ nguyên ảnh gốc)"]
     F -->|Move| H["📁 Di chuyển ảnh sang đích
@@ -82,6 +84,7 @@ flowchart TD
     khôi phục về vị trí ban đầu"]
 
     style A fill:#f59e0b,stroke:#d97706,color:#000
+    style RAW fill:#ec4899,stroke:#be185d,color:#fff
     style I fill:#10b981,stroke:#059669,color:#000
     style J fill:#6366f1,stroke:#4f46e5,color:#fff
 ```
@@ -104,26 +107,58 @@ Kết quả khớp hiển thị trực tiếp ngay khi dán danh sách, trước
 
 ---
 
-## Tính năng
+## Tính năng nổi bật
 
 | Tính năng | Mô tả |
 |:---|:---|
+| **Đọc & Xem trước ảnh RAW trực tiếp** | Giải mã & trích xuất ảnh xem trước độ phân giải cao cho tất cả định dạng RAW máy ảnh (`.cr2`, `.cr3`, `.arw`, `.nef`, `.dng`, `.raf`, `.orf`, `.rw2`, `.pef`) |
+| **Thuật toán Chọn Preview Max Area** | Tự động quét phân đoạn nhị phân JPEG (JPEG Segment Parser), chọn bản preview có diện tích pixel lớn nhất (5760x3840, 1616x1080) thay vì thumbnail EXIF 160x120 nhỏ |
+| **Khung xem ảnh Studio Lightbox** | Giao diện phông nền tối chuyên nghiệp `#111114`, mở rộng ảnh vừa vặn 88vw × 78vh không bị viền thừa |
 | **Đối chiếu thời gian thực** | Kết quả cập nhật ngay khi dán hoặc nhập tên ảnh |
 | **Nhận diện định dạng tự động** | Quét thư mục nguồn, hiển thị các đuôi ảnh tồn tại (`.jpg`, `.cr3`, `.arw`, `.nef`, `.dng`...) |
-| **Bộ lọc đuôi ảnh** | Mặc định tất cả đuôi ảnh đều tắt — nghĩa là tất cả định dạng đều được bao gồm. Bật riêng nếu chỉ muốn lọc định dạng cụ thể |
+| **Bộ lọc đuôi ảnh linh hoạt** | Mặc định tất cả đuôi ảnh đều tắt — nghĩa là bao gồm tất cả định dạng. Bật riêng nếu muốn thu hẹp kết quả |
 | **Loại trừ video** | `.mp4`, `.mov`, `.avi`, `.mkv` luôn bị loại khỏi kết quả |
-| **Phân trang** | Hiển thị 50 / 100 / 250 / 500 dòng mỗi trang cho thư mục lớn |
-| **Nhật ký lọc** | Mỗi lần chạy được ghi log đầy đủ danh sách file đã xử lý |
-| **Hoàn tác (Undo)** | Khôi phục file về vị trí ban đầu chỉ với một lần bấm |
-| **Giao diện Sáng / Tối** | Chuyển đổi tại góc trên bên phải, tùy chọn được lưu lại |
-| **File .exe độc lập** | Một file duy nhất (~116 MB), không cần cài đặt |
+| **Phân trang hiệu năng cao** | 50 / 100 / 250 / 500 dòng mỗi trang cho kho ảnh hàng nghìn file |
+| **Nhật ký & Hoàn tác (Undo)** | Ghi log đầy đủ từng lần chạy, cho phép khôi phục vị trí file ban đầu |
+| **Chuyển đổi Dark / Light Theme** | Tùy chọn giao diện tối/sáng góc trên bên phải, lưu tự động vào localStorage |
+| **File .exe độc lập** | Đóng gói thành 1 file `.exe` duy nhất (~116 MB), chạy ngay không cần cài đặt |
+
+---
+
+## Bộ giải mã ảnh RAW (RAW Preview Engine)
+
+ShutterFilter tích hợp bộ giải mã nhị phân sâu dành cho ảnh RAW chuyên nghiệp:
+
+```mermaid
+flowchart LR
+    A["File RAW
+    (.CR2, .ARW, .NEF, .CR3...)"] --> B["Binary Scanner
+    Quét Segment Header 0xFF 0xD8"]
+    B --> C["Parse JPEG Length
+    Tính chiều dài chuẩn ISO/IEC 10918-1"]
+    C --> D["Read SOF Dimensions
+    Đọc Width x Height của từng preview"]
+    D --> E["Max Pixel Area Filter
+    Lọc lấy bản preview lớn nhất (VD: 5760x3840)"]
+    E -->|<= 4MB| F["Base64 Data URI
+    Nạp mượt 0.001s"]
+    E -->|> 4MB| G["Temp File Fallback
+    Ghi temp & đọc qua file://"]
+    F --> H["📺 Studio Lightbox
+    Hiển thị sắc nét 100%"]
+    G --> H
+
+    style A fill:#f59e0b,stroke:#d97706,color:#000
+    style E fill:#ec4899,stroke:#be185d,color:#fff
+    style H fill:#10b981,stroke:#059669,color:#000
+```
 
 ---
 
 ## Định dạng ảnh hỗ trợ
 
 ```
-RAW       .arw   .cr2   .cr3   .nef   .dng   .raf   .orf   .rw2
+RAW       .arw   .cr2   .cr3   .nef   .dng   .raf   .orf   .rw2   .pef
 Bitmap    .jpg   .jpeg  .png   .webp  .tiff  .bmp   .heic
 ```
 
@@ -146,6 +181,7 @@ graph LR
         B --> C[fileScanner.ts]
         B --> D[filterEngine.ts]
         B --> E[fileOperator.ts]
+        B --> R[exifReader.ts - RAW Engine]
         E --> F[conflictResolver.ts]
         B --> G[store.ts]
     end
@@ -153,7 +189,7 @@ graph LR
     subgraph React Renderer
         H[App.tsx] --> I[FolderPicker]
         H --> J[FilterCriteria]
-        H --> K[PreviewTable]
+        H --> K[PreviewTable - Lightbox]
         H --> L[ModeAndPolicy]
         H --> M[HistoryView]
         H --> N[ExecutionModal]
@@ -170,6 +206,7 @@ graph LR
     P -.-> C
 
     style A fill:#f59e0b,stroke:#d97706,color:#000
+    style R fill:#ec4899,stroke:#be185d,color:#fff
     style H fill:#61dafb,stroke:#4fa8c9,color:#000
 ```
 
@@ -185,6 +222,7 @@ src/
 │   ├── fileScanner.ts           # Quét thư mục, nhận diện đuôi ảnh
 │   ├── filterEngine.ts          # Logic đối chiếu tên file
 │   ├── fileOperator.ts          # Thực thi copy/move kèm báo tiến trình
+│   ├── exifReader.ts            # Bộ giải mã nhị phân ảnh RAW (Max Area JPEG)
 │   ├── conflictResolver.ts      # Xử lý trùng tên file
 │   └── store.ts                 # Lưu trữ nhật ký (JSON)
 │
@@ -194,7 +232,7 @@ src/
 │   └── components/
 │       ├── FolderPicker.tsx      # Chọn thư mục nguồn / đích
 │       ├── FilterCriteria.tsx    # Nhập tên ảnh + chọn đuôi
-│       ├── PreviewTable.tsx      # Bảng kết quả phân trang + thumbnail
+│       ├── PreviewTable.tsx      # Bảng kết quả phân trang + Lightbox RAW xem ảnh
 │       ├── ModeAndPolicy.tsx     # Chọn chế độ Copy / Move
 │       ├── HistoryView.tsx       # Xem nhật ký + hoàn tác
 │       └── ExecutionModal.tsx    # Thanh tiến trình + hành động sau khi xong
