@@ -47,7 +47,7 @@ export async function extractRawThumbnail(filePath: string): Promise<string | nu
     // Engine 1 failed or unsupported format in exifr
   }
 
-  // Engine 2: Deep Binary JPEG Scanner for RAW formats (.CR2, .CR3, .ARW, .NEF, .DNG, .RAF, .ORF, .PEF, .RW2)
+  // Engine 2: Deep Binary JPEG Segment Parser for RAW formats (.CR2, .CR3, .ARW, .NEF, .DNG, .RAF, .ORF, .PEF, .RW2)
   try {
     const jpegBuffer = await extractEmbeddedJpegBinary(filePath);
     if (jpegBuffer && jpegBuffer.length > 0) {
@@ -62,7 +62,8 @@ export async function extractRawThumbnail(filePath: string): Promise<string | nu
 }
 
 /**
- * Scans binary data of a camera RAW file to locate and extract embedded JPEG preview streams.
+ * Scans binary data of a camera RAW file using deterministic JPEG segment parsing
+ * to locate and extract embedded JPEG preview streams.
  */
 async function extractEmbeddedJpegBinary(filePath: string): Promise<Buffer | null> {
   let handle: fs.promises.FileHandle | null = null;
@@ -73,36 +74,23 @@ async function extractEmbeddedJpegBinary(filePath: string): Promise<Buffer | nul
 
     if (fileSize < 100 * 1024) return null; // File too small to be a RAW
 
-    // Read up to first 32MB where embedded JPEG previews are located
-    const readSize = Math.min(fileSize, 32 * 1024 * 1024);
+    // Read up to first 40MB where embedded JPEG previews are located
+    const readSize = Math.min(fileSize, 40 * 1024 * 1024);
     const buffer = Buffer.alloc(readSize);
     await handle.read(buffer, 0, readSize, 0);
     await handle.close();
     handle = null;
 
-    const jpegs: { start: number; end: number; size: number }[] = [];
+    const jpegs: { start: number; length: number }[] = [];
     let pos = 0;
 
     while (pos < buffer.length - 4) {
       // Look for JPEG SOI marker: 0xFF 0xD8 0xFF
       if (buffer[pos] === 0xFF && buffer[pos + 1] === 0xD8 && buffer[pos + 2] === 0xFF) {
-        const start = pos;
-        let end = -1;
-
-        // Look for JPEG EOI marker: 0xFF 0xD9
-        for (let i = start + 3; i < buffer.length - 1; i++) {
-          if (buffer[i] === 0xFF && buffer[i + 1] === 0xD9) {
-            end = i + 2;
-            const size = end - start;
-            // Only keep previews larger than 15KB (filters out tiny EXIF thumbnails)
-            if (size > 15 * 1024) {
-              jpegs.push({ start, end, size });
-            }
-            break;
-          }
-        }
-        if (end !== -1) {
-          pos = end;
+        const length = parseJpegLength(buffer, pos);
+        if (length && length > 15 * 1024) {
+          jpegs.push({ start: pos, length });
+          pos += length;
           continue;
         }
       }
@@ -111,15 +99,84 @@ async function extractEmbeddedJpegBinary(filePath: string): Promise<Buffer | nul
 
     if (jpegs.length > 0) {
       // Return the largest extracted JPEG preview (highest resolution)
-      jpegs.sort((a, b) => b.size - a.size);
+      jpegs.sort((a, b) => b.length - a.length);
       const largest = jpegs[0];
-      return buffer.subarray(largest.start, largest.end);
+      return buffer.subarray(largest.start, largest.start + largest.length);
     }
   } catch (err) {
     if (handle) {
       try { await handle.close(); } catch (_) {}
     }
   }
+  return null;
+}
+
+/**
+ * Parses a JPEG stream starting from offset using proper JPEG segment structure.
+ * Returns the exact length of the JPEG image stream, or null if invalid.
+ */
+function parseJpegLength(buffer: Buffer, startOffset: number): number | null {
+  if (startOffset + 2 > buffer.length) return null;
+  if (buffer[startOffset] !== 0xFF || buffer[startOffset + 1] !== 0xD8) return null;
+
+  let offset = startOffset + 2;
+
+  while (offset < buffer.length - 2) {
+    if (buffer[offset] !== 0xFF) {
+      offset++;
+      continue;
+    }
+
+    const marker = buffer[offset + 1];
+
+    if (marker === 0xFF) {
+      offset++;
+      continue;
+    }
+
+    // EOI (End of Image)
+    if (marker === 0xD9) {
+      return offset + 2 - startOffset;
+    }
+
+    // Standalone markers: SOI (D8), TEM (01), RST0-RST7 (D0-D7)
+    if (marker === 0xD8 || marker === 0x01 || (marker >= 0xD0 && marker <= 0xD7)) {
+      offset += 2;
+      continue;
+    }
+
+    // SOS (Start of Scan) - Entropy coded image data follows header
+    if (marker === 0xDA) {
+      if (offset + 4 > buffer.length) return null;
+      const headerLen = buffer.readUInt16BE(offset + 2);
+      offset += 2 + headerLen;
+
+      while (offset < buffer.length - 1) {
+        if (buffer[offset] === 0xFF) {
+          const next = buffer[offset + 1];
+          if (next === 0xD9) {
+            return offset + 2 - startOffset;
+          }
+          if (next === 0x00 || (next >= 0xD0 && next <= 0xD7)) {
+            offset += 2;
+            continue;
+          }
+          if (next >= 0xC0 && next <= 0xFE) {
+            return offset - startOffset;
+          }
+        }
+        offset++;
+      }
+      return null;
+    }
+
+    // Regular segment with 2-byte length
+    if (offset + 4 > buffer.length) return null;
+    const segLen = buffer.readUInt16BE(offset + 2);
+    if (segLen < 2) return null;
+    offset += 2 + segLen;
+  }
+
   return null;
 }
 

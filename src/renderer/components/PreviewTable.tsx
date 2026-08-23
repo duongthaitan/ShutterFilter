@@ -476,6 +476,11 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
                   alt={previewImageModalFile.filename || previewImageModalFile.name}
                   className="max-h-[75vh] max-w-full object-contain rounded-[4px] shadow-2xl transition-transform duration-200"
                 />
+              ) : RAW_EXTENSIONS.includes((previewImageModalFile.extension || '').toLowerCase().replace(/^\./, '')) ? (
+                <div className="p-12 flex flex-col items-center justify-center space-y-3 text-[var(--text-muted)]">
+                  <FileImage className="w-16 h-16 text-amber-500" />
+                  <p className="text-xs font-mono">Không thể trích xuất ảnh xem trước từ tệp RAW này</p>
+                </div>
               ) : getFileThumbnailUrl(previewImageModalFile) && !failedImages[previewImageModalFile.id || previewImageModalFile.sourcePath || ''] ? (
                 <img
                   src={getFileThumbnailUrl(previewImageModalFile)}
@@ -485,7 +490,7 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
               ) : (
                 <div className="p-12 flex flex-col items-center justify-center space-y-3 text-[var(--text-muted)]">
                   <FileImage className="w-16 h-16 text-amber-500" />
-                  <p className="text-xs font-mono">Không thể trích xuất ảnh xem trước từ tệp này</p>
+                  <p className="text-xs font-mono">Không hỗ trợ xem trực tiếp tệp này</p>
                 </div>
               )}
             </div>
