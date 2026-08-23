@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs & Binaries (Over 100MB)
+dist/
+dist-electron/
+release/
+*.exe
+*.zip
+*.exe.log
+
+# Environment & Logs
+.env
+.env.local
+*.log
+npm-debug.log*
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Scratch & Brain
+.agents/

@@ -1,0 +1,2695 @@
+{
+  "presets": [],
+  "history": [
+    {
+      "run_id": "run-1787499675189-9o80i",
+      "timestamp": "2026-08-23T15:41:15.190Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-S9FqBX\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-S9FqBX\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-S9FqBX\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-S9FqBX\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787499675176-ofrqa",
+      "timestamp": "2026-08-23T15:41:15.180Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-S9FqBX\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-S9FqBX\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-S9FqBX\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-S9FqBX\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-S9FqBX\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-S9FqBX\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787499675162-p62g7",
+      "timestamp": "2026-08-23T15:41:15.165Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787499406854-x8u5q",
+      "timestamp": "2026-08-23T15:36:46.856Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6eFJ6l\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6eFJ6l\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6eFJ6l\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6eFJ6l\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787499406838-ztjje",
+      "timestamp": "2026-08-23T15:36:46.843Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6eFJ6l\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6eFJ6l\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6eFJ6l\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6eFJ6l\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6eFJ6l\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6eFJ6l\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787499406810-yu2k8",
+      "timestamp": "2026-08-23T15:36:46.814Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787498762846-xho5l",
+      "timestamp": "2026-08-23T15:26:02.848Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Bh2yv3\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Bh2yv3\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Bh2yv3\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Bh2yv3\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787498762827-5k8fd",
+      "timestamp": "2026-08-23T15:26:02.836Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Bh2yv3\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Bh2yv3\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Bh2yv3\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Bh2yv3\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Bh2yv3\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Bh2yv3\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787498762814-yhhrc",
+      "timestamp": "2026-08-23T15:26:02.817Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787498534482-yvhkh",
+      "timestamp": "2026-08-23T15:22:14.484Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Iy2hFU\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Iy2hFU\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Iy2hFU\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Iy2hFU\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787498534470-0niim",
+      "timestamp": "2026-08-23T15:22:14.474Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Iy2hFU\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Iy2hFU\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Iy2hFU\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Iy2hFU\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Iy2hFU\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Iy2hFU\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787498534447-07x7w",
+      "timestamp": "2026-08-23T15:22:14.451Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787498224649-bq7ih",
+      "timestamp": "2026-08-23T15:17:04.650Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hCzoDN\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hCzoDN\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hCzoDN\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hCzoDN\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787498224637-07sex",
+      "timestamp": "2026-08-23T15:17:04.641Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hCzoDN\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hCzoDN\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hCzoDN\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hCzoDN\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hCzoDN\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hCzoDN\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787498224617-aprf9",
+      "timestamp": "2026-08-23T15:17:04.620Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787497690633-hlt8k",
+      "timestamp": "2026-08-23T15:08:10.636Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Daf6Mt\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Daf6Mt\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Daf6Mt\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Daf6Mt\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787497690601-5ffae",
+      "timestamp": "2026-08-23T15:08:10.611Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Daf6Mt\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Daf6Mt\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Daf6Mt\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Daf6Mt\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Daf6Mt\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Daf6Mt\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787497690346-cqio6",
+      "timestamp": "2026-08-23T15:08:10.401Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787494463251-n8h2x",
+      "timestamp": "2026-08-23T14:14:23.252Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-OFz2m3\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-OFz2m3\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-OFz2m3\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-OFz2m3\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787494463239-btr7a",
+      "timestamp": "2026-08-23T14:14:23.243Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-OFz2m3\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-OFz2m3\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-OFz2m3\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-OFz2m3\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-OFz2m3\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-OFz2m3\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787494463227-y5w39",
+      "timestamp": "2026-08-23T14:14:23.231Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787492336662-9cl9x",
+      "timestamp": "2026-08-23T13:38:56.664Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-kb1RgQ\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-kb1RgQ\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-kb1RgQ\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-kb1RgQ\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787492336648-mmxib",
+      "timestamp": "2026-08-23T13:38:56.653Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-kb1RgQ\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-kb1RgQ\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-kb1RgQ\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-kb1RgQ\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-kb1RgQ\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-kb1RgQ\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787492336622-teaoq",
+      "timestamp": "2026-08-23T13:38:56.626Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787491276742-8gqf1",
+      "timestamp": "2026-08-23T13:21:16.743Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-MeKosO\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-MeKosO\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-MeKosO\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-MeKosO\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787491276729-11470",
+      "timestamp": "2026-08-23T13:21:16.733Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-MeKosO\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-MeKosO\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-MeKosO\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-MeKosO\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-MeKosO\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-MeKosO\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787491276710-6a4wo",
+      "timestamp": "2026-08-23T13:21:16.714Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787490906782-iu9do",
+      "timestamp": "2026-08-23T13:15:06.813Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-IbsjVX\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-IbsjVX\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-IbsjVX\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-IbsjVX\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787490906577-s6jr7",
+      "timestamp": "2026-08-23T13:15:06.654Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-IbsjVX\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-IbsjVX\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-IbsjVX\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-IbsjVX\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-IbsjVX\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-IbsjVX\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787490906397-uydbd",
+      "timestamp": "2026-08-23T13:15:06.440Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787490577740-o2jd4",
+      "timestamp": "2026-08-23T13:09:37.742Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Uj8mX3\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Uj8mX3\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Uj8mX3\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Uj8mX3\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787490577722-6dems",
+      "timestamp": "2026-08-23T13:09:37.728Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Uj8mX3\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Uj8mX3\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Uj8mX3\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Uj8mX3\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Uj8mX3\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Uj8mX3\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787490577692-2kfks",
+      "timestamp": "2026-08-23T13:09:37.697Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787489928046-bpdq3",
+      "timestamp": "2026-08-23T12:58:48.048Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-wBCDoG\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-wBCDoG\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-wBCDoG\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-wBCDoG\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787489928034-pj5aw",
+      "timestamp": "2026-08-23T12:58:48.038Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-wBCDoG\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-wBCDoG\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-wBCDoG\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-wBCDoG\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-wBCDoG\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-wBCDoG\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787489928013-loxe0",
+      "timestamp": "2026-08-23T12:58:48.018Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787489330062-g0hiw",
+      "timestamp": "2026-08-23T12:48:50.064Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ECDis4\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ECDis4\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ECDis4\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ECDis4\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787489330046-jfw27",
+      "timestamp": "2026-08-23T12:48:50.051Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ECDis4\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ECDis4\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ECDis4\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ECDis4\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ECDis4\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ECDis4\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787489330021-oir9l",
+      "timestamp": "2026-08-23T12:48:50.027Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787488840469-1adpo",
+      "timestamp": "2026-08-23T12:40:40.471Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-2haxjI\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-2haxjI\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-2haxjI\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-2haxjI\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787488840459-4j96k",
+      "timestamp": "2026-08-23T12:40:40.462Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-2haxjI\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-2haxjI\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-2haxjI\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-2haxjI\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-2haxjI\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-2haxjI\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787488840438-cb5sx",
+      "timestamp": "2026-08-23T12:40:40.442Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787488601491-fvbw3",
+      "timestamp": "2026-08-23T12:36:41.492Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6AyDjn\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6AyDjn\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6AyDjn\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6AyDjn\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787488601477-xg6r8",
+      "timestamp": "2026-08-23T12:36:41.481Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6AyDjn\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6AyDjn\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6AyDjn\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6AyDjn\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6AyDjn\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-6AyDjn\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787488601451-tjcy3",
+      "timestamp": "2026-08-23T12:36:41.455Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787488160586-bfmaa",
+      "timestamp": "2026-08-23T12:29:20.588Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-5QbXDp\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-5QbXDp\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-5QbXDp\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-5QbXDp\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787488160576-q5by0",
+      "timestamp": "2026-08-23T12:29:20.579Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-5QbXDp\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-5QbXDp\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-5QbXDp\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-5QbXDp\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-5QbXDp\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-5QbXDp\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787488160558-nvawq",
+      "timestamp": "2026-08-23T12:29:20.561Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787487698503-tzp7v",
+      "timestamp": "2026-08-23T12:21:38.505Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-8mWbuN\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-8mWbuN\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-8mWbuN\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-8mWbuN\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787487698489-k8kp3",
+      "timestamp": "2026-08-23T12:21:38.494Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-8mWbuN\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-8mWbuN\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-8mWbuN\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-8mWbuN\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-8mWbuN\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-8mWbuN\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787487698473-2h7wu",
+      "timestamp": "2026-08-23T12:21:38.476Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787487342367-48yl6",
+      "timestamp": "2026-08-23T12:15:42.369Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-UTPfHQ\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-UTPfHQ\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-UTPfHQ\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-UTPfHQ\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787487342354-ps3b7",
+      "timestamp": "2026-08-23T12:15:42.358Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-UTPfHQ\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-UTPfHQ\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-UTPfHQ\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-UTPfHQ\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-UTPfHQ\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-UTPfHQ\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787487342338-ciexp",
+      "timestamp": "2026-08-23T12:15:42.341Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787487014373-wcskl",
+      "timestamp": "2026-08-23T12:10:14.374Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-KwmeJC\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-KwmeJC\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-KwmeJC\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-KwmeJC\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787487014363-co09b",
+      "timestamp": "2026-08-23T12:10:14.366Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-KwmeJC\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-KwmeJC\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-KwmeJC\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-KwmeJC\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-KwmeJC\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-KwmeJC\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787487014345-uapqj",
+      "timestamp": "2026-08-23T12:10:14.347Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787486488544-dbzpj",
+      "timestamp": "2026-08-23T12:01:28.545Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AVVAZ4\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AVVAZ4\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AVVAZ4\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AVVAZ4\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787486488532-77t4r",
+      "timestamp": "2026-08-23T12:01:28.538Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AVVAZ4\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AVVAZ4\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AVVAZ4\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AVVAZ4\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AVVAZ4\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AVVAZ4\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787486488517-qfqs1",
+      "timestamp": "2026-08-23T12:01:28.521Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787486472598-290lh",
+      "timestamp": "2026-08-23T12:01:12.599Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-K1wtpW\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-K1wtpW\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-K1wtpW\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-K1wtpW\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787486472588-vj8n8",
+      "timestamp": "2026-08-23T12:01:12.591Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-K1wtpW\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-K1wtpW\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-K1wtpW\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-K1wtpW\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-K1wtpW\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-K1wtpW\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787486058540-wudc3",
+      "timestamp": "2026-08-23T11:54:18.542Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SLklHz\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SLklHz\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SLklHz\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SLklHz\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787486058525-l9ils",
+      "timestamp": "2026-08-23T11:54:18.529Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SLklHz\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SLklHz\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SLklHz\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SLklHz\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SLklHz\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SLklHz\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787486058499-dbct4",
+      "timestamp": "2026-08-23T11:54:18.505Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787485371863-g3hql",
+      "timestamp": "2026-08-23T11:42:51.865Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-WzeHw0\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-WzeHw0\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-WzeHw0\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-WzeHw0\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787485371848-ne7k2",
+      "timestamp": "2026-08-23T11:42:51.853Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-WzeHw0\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-WzeHw0\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-WzeHw0\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-WzeHw0\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-WzeHw0\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-WzeHw0\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787485371822-m80p1",
+      "timestamp": "2026-08-23T11:42:51.826Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787485052930-umeh0",
+      "timestamp": "2026-08-23T11:37:32.932Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-urDNOh\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-urDNOh\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-urDNOh\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-urDNOh\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787485052911-rltr2",
+      "timestamp": "2026-08-23T11:37:32.920Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-urDNOh\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-urDNOh\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-urDNOh\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-urDNOh\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-urDNOh\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-urDNOh\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787485052901-cnwbo",
+      "timestamp": "2026-08-23T11:37:32.904Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787485029732-s77we",
+      "timestamp": "2026-08-23T11:37:09.734Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SqRVMD\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SqRVMD\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SqRVMD\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SqRVMD\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787485029716-3dt53",
+      "timestamp": "2026-08-23T11:37:09.721Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SqRVMD\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SqRVMD\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SqRVMD\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SqRVMD\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SqRVMD\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-SqRVMD\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787484174593-l0bp2",
+      "timestamp": "2026-08-23T11:22:54.596Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787483980455-yjge2",
+      "timestamp": "2026-08-23T11:19:40.458Z",
+      "source_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source",
+      "destination_folder": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination",
+      "mode": "copy",
+      "duplicate_policy": "auto_rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08972.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08972.JPG",
+          "filename": "DTT08972.JPG",
+          "status": "success"
+        },
+        {
+          "source": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\source\\DTT08976.JPG",
+          "destination": "D:\\ShutterFilter-Tandev.foto\\tests\\__e2e_realcopy_test__\\destination\\DTT08976.JPG",
+          "filename": "DTT08976.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787482120176-5xq4e",
+      "timestamp": "2026-08-23T10:48:40.178Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-cWRyFo\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-cWRyFo\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-cWRyFo\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-cWRyFo\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787482120164-kptc4",
+      "timestamp": "2026-08-23T10:48:40.169Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-cWRyFo\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-cWRyFo\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-cWRyFo\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-cWRyFo\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-cWRyFo\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-cWRyFo\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787481518115-gw66o",
+      "timestamp": "2026-08-23T10:38:38.137Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-VmxoZo\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-VmxoZo\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-VmxoZo\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-VmxoZo\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787481517957-e219g",
+      "timestamp": "2026-08-23T10:38:37.999Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-VmxoZo\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-VmxoZo\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-VmxoZo\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-VmxoZo\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-VmxoZo\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-VmxoZo\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787481472306-tprr0",
+      "timestamp": "2026-08-23T10:37:52.308Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-vQsxze\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-vQsxze\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-vQsxze\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-vQsxze\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787481472293-fj9ni",
+      "timestamp": "2026-08-23T10:37:52.297Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-vQsxze\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-vQsxze\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-vQsxze\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-vQsxze\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-vQsxze\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-vQsxze\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787481127113-jw59h",
+      "timestamp": "2026-08-23T10:32:07.114Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AziDaX\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AziDaX\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AziDaX\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AziDaX\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787481127101-8g13n",
+      "timestamp": "2026-08-23T10:32:07.105Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AziDaX\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AziDaX\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AziDaX\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AziDaX\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AziDaX\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-AziDaX\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787480836387-0kts2",
+      "timestamp": "2026-08-23T10:27:16.390Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-iHG3we\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-iHG3we\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-iHG3we\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-iHG3we\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787480836369-gnyso",
+      "timestamp": "2026-08-23T10:27:16.375Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-iHG3we\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-iHG3we\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-iHG3we\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-iHG3we\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-iHG3we\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-iHG3we\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787480631022-zuapb",
+      "timestamp": "2026-08-23T10:23:51.051Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-1VToJg\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-1VToJg\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-1VToJg\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-1VToJg\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787480630821-88sgu",
+      "timestamp": "2026-08-23T10:23:50.891Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-1VToJg\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-1VToJg\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-1VToJg\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-1VToJg\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-1VToJg\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-1VToJg\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787480355279-q94te",
+      "timestamp": "2026-08-23T10:19:15.281Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-tuOo9y\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-tuOo9y\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-tuOo9y\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-tuOo9y\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787480355263-h5919",
+      "timestamp": "2026-08-23T10:19:15.270Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-tuOo9y\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-tuOo9y\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-tuOo9y\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-tuOo9y\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-tuOo9y\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-tuOo9y\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787479464736-9pay9",
+      "timestamp": "2026-08-23T10:04:24.738Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Sg8q0C\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Sg8q0C\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Sg8q0C\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Sg8q0C\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787479464723-bdu3t",
+      "timestamp": "2026-08-23T10:04:24.729Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Sg8q0C\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Sg8q0C\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Sg8q0C\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Sg8q0C\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Sg8q0C\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Sg8q0C\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787478644276-3rbfy",
+      "timestamp": "2026-08-23T09:50:44.298Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-DiZWGU\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-DiZWGU\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-DiZWGU\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-DiZWGU\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787478644123-g7bh5",
+      "timestamp": "2026-08-23T09:50:44.157Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-DiZWGU\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-DiZWGU\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-DiZWGU\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-DiZWGU\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-DiZWGU\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-DiZWGU\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787478064754-eeg9r",
+      "timestamp": "2026-08-23T09:41:04.756Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-qXuYuA\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-qXuYuA\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-qXuYuA\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-qXuYuA\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787478064739-mcpf7",
+      "timestamp": "2026-08-23T09:41:04.744Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-qXuYuA\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-qXuYuA\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-qXuYuA\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-qXuYuA\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-qXuYuA\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-qXuYuA\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787477962552-4d0qv",
+      "timestamp": "2026-08-23T09:39:22.554Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-FLSn8r\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-FLSn8r\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-FLSn8r\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-FLSn8r\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787477962540-f9q8q",
+      "timestamp": "2026-08-23T09:39:22.544Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-FLSn8r\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-FLSn8r\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-FLSn8r\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-FLSn8r\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-FLSn8r\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-FLSn8r\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787477726157-a00sc",
+      "timestamp": "2026-08-23T09:35:26.161Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ulm31O\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ulm31O\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ulm31O\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ulm31O\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787477726107-ubbz5",
+      "timestamp": "2026-08-23T09:35:26.129Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ulm31O\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ulm31O\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ulm31O\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ulm31O\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ulm31O\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-ulm31O\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787476413720-8skuu",
+      "timestamp": "2026-08-23T09:13:33.721Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Lst7En\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Lst7En\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Lst7En\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Lst7En\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787476413705-urhu5",
+      "timestamp": "2026-08-23T09:13:33.713Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Lst7En\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Lst7En\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Lst7En\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Lst7En\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Lst7En\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-Lst7En\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787476386483-j24ru",
+      "timestamp": "2026-08-23T09:13:06.484Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hjv6Zh\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hjv6Zh\\dest",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 1,
+      "processed": 1,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": true,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hjv6Zh\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hjv6Zh\\dest\\DSC0001_1.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "run_id": "run-1787476386473-zdrtg",
+      "timestamp": "2026-08-23T09:13:06.477Z",
+      "source_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hjv6Zh\\source",
+      "destination_folder": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hjv6Zh\\dest",
+      "preset_name": "Test Copy Preset",
+      "mode": "copy",
+      "duplicate_policy": "rename",
+      "total_matched": 2,
+      "processed": 2,
+      "skipped_duplicate": 0,
+      "errors": 0,
+      "undone": false,
+      "file_map": [
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hjv6Zh\\source\\A7R_PHOTO.ARW",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hjv6Zh\\dest\\A7R_PHOTO.ARW",
+          "filename": "A7R_PHOTO.ARW",
+          "status": "success"
+        },
+        {
+          "source": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hjv6Zh\\source\\DSC0001.JPG",
+          "destination": "C:\\Users\\VTOS\\AppData\\Local\\Temp\\shutterfilter-test-hjv6Zh\\dest\\DSC0001.JPG",
+          "filename": "DSC0001.JPG",
+          "status": "success"
+        }
+      ],
+      "schema_version": 1
+    }
+  ],
+  "schema_version": 1
+}
