@@ -1,126 +1,167 @@
-# ShutterFilter
+<p align="center">
+  <img src="assets/icon.png" width="80" height="80" alt="ShutterFilter icon" />
+</p>
 
-Desktop tool for photographers and studios. Filters photos from a source folder by matching against a list of filenames, then copies or moves the matched files to a destination.
+<h1 align="center">ShutterFilter</h1>
 
-Built with Electron, React 18, TypeScript, Tailwind CSS v4.
+<p align="center">
+  <strong>by Tandev.foto</strong>
+</p>
 
-![Dark Mode](docs/images/dark_mode_ui.png)
+<p align="center">
+  <a href="https://github.com/duongthaitan/ShutterFilter/releases"><img src="https://img.shields.io/badge/version-1.0.0-f59e0b?style=flat-square" alt="Version" /></a>
+  <img src="https://img.shields.io/badge/electron-33-47848f?style=flat-square&logo=electron&logoColor=white" alt="Electron" />
+  <img src="https://img.shields.io/badge/react-18-61dafb?style=flat-square&logo=react&logoColor=white" alt="React" />
+  <img src="https://img.shields.io/badge/tailwind-v4-38bdf8?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/typescript-strict-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/tests-17%20passed-10b981?style=flat-square" alt="Tests" />
+  <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="License" />
+</p>
 
-![Light Mode](docs/images/light_mode_ui.png)
+<p align="center">
+  Desktop tool for photographers and studios.<br/>
+  Filters photos from a source folder by matching a list of filenames,<br/>
+  then copies or moves the matched files to a destination.
+</p>
 
 ---
 
-## Problem
+### Dark Mode
 
-After a shoot, you have thousands of files (RAW + JPEG) in a folder. Your client sends back a list of selected photo names. Finding and extracting those files manually is slow and error-prone.
+![Dark Mode workspace](docs/images/dark_mode_ui.png)
 
-ShutterFilter automates this: paste the filename list, point to the source and destination folders, run.
+### Light Mode
+
+![Light Mode workspace](docs/images/light_mode_ui.png)
 
 ---
 
-## How it works
+## The Problem
 
-1. Pick a **source folder** containing your photos.
-2. Pick a **destination folder** for the filtered output.
-3. Paste **photo names** into the text field (one per line, e.g. `DTT00970`, `DTT00971`).
-4. The app scans the source folder, matches filenames in real time, and shows results in a paginated table.
-5. Optionally filter by file extension — all extensions are unchecked by default (meaning all formats are included). Toggle specific ones like `.jpg` or `.arw` if you only want certain formats.
-6. Choose **Copy** (keeps originals) or **Move** (relocates files).
-7. Hit run.
+After a shoot, you have thousands of files in a folder — RAW and JPEG mixed together. Your client sends back a list of selected photo names. You need to find and extract those specific files from the pile.
 
-![Filter and match preview](docs/images/filter_preview.png)
+Doing this manually is slow, tedious, and easy to mess up.
+
+## The Solution
+
+Paste the filename list into ShutterFilter, point it at the source and destination folders, run. Done.
+
+---
+
+## Usage
+
+```
+1.  Pick source folder        → where your original photos live
+2.  Pick destination folder    → where filtered results go
+3.  Paste photo names          → one per line (e.g. DTT00970, DTT00971)
+4.  Choose mode                → Copy (safe, keeps originals) or Move
+5.  Run                        → files land in destination
+```
+
+The app matches filenames in real time as you paste. Results appear in a paginated table before you commit to running anything.
+
+![Filter matching and preview](docs/images/filter_preview.png)
 
 ---
 
 ## Features
 
-**Real-time matching** — Results update as you type or paste filenames. No manual refresh.
+| | |
+|---|---|
+| **Real-time matching** | Results update live as you type or paste filenames |
+| **Auto extension detection** | Scans source folder, shows available formats (`.jpg`, `.cr3`, `.arw`, `.nef`, `.dng`...) |
+| **Format filtering** | Extensions default to off — all formats included. Toggle specific ones to narrow results |
+| **Video exclusion** | `.mp4`, `.mov`, `.avi`, `.mkv` always excluded |
+| **Pagination** | 50 / 100 / 250 / 500 rows per page for large folders |
+| **Run history** | Every operation logged with full file map |
+| **Undo** | One-click restore to original locations |
+| **Dark / Light theme** | Toggle in header, preference persists across sessions |
+| **Portable .exe** | Single file (~116 MB), no installer, no dependencies |
 
-**Extension detection** — Scans the source folder and shows which file formats exist (`.jpg`, `.cr3`, `.arw`, `.nef`, `.dng`, etc.). Extensions default to off/unchecked so all photo formats are included unless you narrow it down.
+---
 
-**Video exclusion** — `.mp4`, `.mov`, `.avi`, `.mkv` and other video formats are always excluded from results.
+## Supported Formats
 
-**Pagination** — Table renders 50, 100, 250, or 500 rows per page. Handles large folders without freezing the UI.
+```
+RAW     .arw  .cr2  .cr3  .nef  .dng  .raf  .orf  .rw2
+Bitmap  .jpg  .jpeg .png  .webp .tiff .bmp  .heic
+```
 
-**Run history and undo** — Every copy/move operation is logged with a full file map. One-click undo restores files to their original location.
+---
+
+## History & Undo
+
+Every copy/move operation creates a transaction log. You can browse past runs, inspect which files went where, and undo any run to restore files back to their original location.
 
 ![History and undo](docs/images/history_undo.png)
-
-**Dark and light themes** — Toggle between Studio Dark and Studio Light via the button in the top-right corner. Theme preference is saved to localStorage.
-
-**Single-file executable** — Ships as one `.exe` file (~116 MB). No installer, no runtime dependencies. Drop it on any Windows machine and run.
-
----
-
-## Supported formats
-
-**RAW:** `.arw`, `.cr2`, `.cr3`, `.nef`, `.dng`, `.raf`, `.orf`, `.rw2`
-
-**Bitmap:** `.jpg`, `.jpeg`, `.png`, `.webp`, `.tiff`, `.bmp`, `.heic`
-
----
-
-## Tech stack
-
-| Layer | Technology |
-| --- | --- |
-| Runtime | Electron 33 |
-| Frontend | React 18, TypeScript, Tailwind CSS v4, Lucide Icons |
-| Build | Vite 6, electron-builder |
-| Tests | Vitest (17 tests — unit + E2E integration) |
-| Packaging | C# .NET 4.0 launcher + embedded ZIP payload + ResEdit icon/version patcher |
 
 ---
 
 ## Development
 
 ```bash
-# Install dependencies
+# Install
 npm install
 
-# Run in dev mode (opens Electron window with hot reload)
+# Dev mode — Electron window with hot reload
 npm run dev
 
-# Run tests
+# Run test suite (17 tests, unit + E2E)
 npm test
 
-# Build single-file .exe (requires Python 3 and .NET Framework 4.0 on the build machine)
+# Build single-file .exe
+# Requires: Python 3, .NET Framework 4.0 (csc.exe)
 npm run build:single
+# → release/ShutterFilter_SingleFile.exe
 ```
 
-Output: `release/ShutterFilter_SingleFile.exe`
-
----
-
-## Project structure
+## Architecture
 
 ```
 src/
-├── main/               # Electron main process
-│   ├── index.ts        # Window creation, app lifecycle
-│   ├── ipcHandlers.ts  # IPC bridge between main and renderer
-│   ├── fileScanner.ts  # Directory walking, extension detection
-│   ├── filterEngine.ts # Filename matching logic
-│   ├── fileOperator.ts # Copy/move execution with progress
-│   ├── conflictResolver.ts  # Duplicate filename handling
-│   └── store.ts        # Run history persistence (JSON)
-├── renderer/           # React UI
-│   ├── App.tsx         # Root component, state management, theme toggle
-│   ├── index.css       # Design tokens, theme variables, component styles
+├── main/                        # Electron main process
+│   ├── index.ts                 # Window, app lifecycle
+│   ├── ipcHandlers.ts           # IPC bridge
+│   ├── fileScanner.ts           # Directory walk, extension detection
+│   ├── filterEngine.ts          # Filename matching
+│   ├── fileOperator.ts          # Copy/move with progress reporting
+│   ├── conflictResolver.ts      # Duplicate handling
+│   └── store.ts                 # Run history (JSON persistence)
+│
+├── renderer/                    # React UI
+│   ├── App.tsx                  # Root, state, theme toggle
+│   ├── index.css                # Design tokens, theme variables
 │   └── components/
-│       ├── FolderPicker.tsx    # Source/destination folder selection
-│       ├── FilterCriteria.tsx  # Keyword input + extension toggles
-│       ├── PreviewTable.tsx    # Paginated results table with thumbnails
-│       ├── ModeAndPolicy.tsx   # Copy/Move mode selector
-│       ├── HistoryView.tsx     # Run log browser + undo
-│       └── ExecutionModal.tsx  # Progress bar + completion actions
+│       ├── FolderPicker.tsx      # Source/destination selection
+│       ├── FilterCriteria.tsx    # Keywords + extension toggles
+│       ├── PreviewTable.tsx      # Paginated results with thumbnails
+│       ├── ModeAndPolicy.tsx     # Copy/Move selector
+│       ├── HistoryView.tsx       # Run log + undo
+│       └── ExecutionModal.tsx    # Progress + completion
+│
 └── shared/
-    ├── types.ts              # Shared TypeScript interfaces
-    └── imageExtensions.ts    # Extension whitelist/blacklist
+    ├── types.ts                 # Shared interfaces
+    └── imageExtensions.ts       # Format whitelist
+```
+
+## Build Pipeline
+
+```
+npm run build:single
+    │
+    ├── tsc              — Type check
+    ├── vite build       — Bundle renderer + main + preload
+    ├── electron-builder — Package into win-unpacked/
+    ├── build_single_exe.py
+    │   ├── ZIP win-unpacked/ into payload
+    │   ├── Compile C# launcher (csc.exe)
+    │   └── Embed ZIP as .NET resource
+    └── patch_exe_icon.js
+        └── Patch PE icon + version info via resedit
 ```
 
 ---
 
-## License
-
-MIT — Tandev.foto, 2026
+<p align="center">
+  <sub>Built by <strong>Tandev.foto</strong> — © 2026</sub>
+</p>
