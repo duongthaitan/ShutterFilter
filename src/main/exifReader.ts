@@ -1,4 +1,6 @@
 import fs from 'fs';
+import path from 'path';
+import os from 'os';
 import exifr from 'exifr';
 
 export async function getPhotoDateTaken(filePath: string): Promise<string | null> {
@@ -51,8 +53,19 @@ export async function extractRawThumbnail(filePath: string): Promise<string | nu
   try {
     const jpegBuffer = await extractEmbeddedJpegBinary(filePath);
     if (jpegBuffer && jpegBuffer.length > 0) {
-      const base64 = jpegBuffer.toString('base64');
-      return `data:image/jpeg;base64,${base64}`;
+      // If JPEG preview is <= 4MB, return base64 data URL for instant zero-disk rendering
+      if (jpegBuffer.length <= 4 * 1024 * 1024) {
+        const base64 = jpegBuffer.toString('base64');
+        return `data:image/jpeg;base64,${base64}`;
+      }
+
+      // If JPEG preview > 4MB (full resolution RAW preview), write to TEMP folder and return file:// URL
+      // so Chromium can render large JPEGs without data-URI size limits
+      const tempDir = os.tmpdir();
+      const safeName = path.basename(filePath).replace(/[^a-zA-Z0-9._-]/g, '_');
+      const tempPath = path.join(tempDir, `shutterfilter_raw_${safeName}.jpg`);
+      await fs.promises.writeFile(tempPath, jpegBuffer);
+      return `file:///${tempPath.replace(/\\/g, '/')}`;
     }
   } catch (err) {
     console.error('Engine 2 RAW extraction error:', err);
@@ -72,12 +85,11 @@ async function extractEmbeddedJpegBinary(filePath: string): Promise<Buffer | nul
     const stat = await handle.stat();
     const fileSize = stat.size;
 
-    if (fileSize < 100 * 1024) return null; // File too small to be a RAW
+    if (fileSize < 50 * 1024) return null; // File too small to be a RAW
 
-    // Read up to first 40MB where embedded JPEG previews are located
-    const readSize = Math.min(fileSize, 40 * 1024 * 1024);
-    const buffer = Buffer.alloc(readSize);
-    await handle.read(buffer, 0, readSize, 0);
+    // Read full file buffer for scanner
+    const buffer = Buffer.alloc(fileSize);
+    await handle.read(buffer, 0, fileSize, 0);
     await handle.close();
     handle = null;
 
@@ -98,7 +110,15 @@ async function extractEmbeddedJpegBinary(filePath: string): Promise<Buffer | nul
     }
 
     if (jpegs.length > 0) {
-      // Return the largest extracted JPEG preview (highest resolution)
+      // Prioritize crisp medium previews (100KB to 5MB) for fast URI rendering in Electron
+      const idealCandidates = jpegs.filter(j => j.length >= 100 * 1024 && j.length <= 5 * 1024 * 1024);
+      if (idealCandidates.length > 0) {
+        idealCandidates.sort((a, b) => b.length - a.length);
+        const best = idealCandidates[0];
+        return buffer.subarray(best.start, best.start + best.length);
+      }
+
+      // Fallback to largest preview overall
       jpegs.sort((a, b) => b.length - a.length);
       const largest = jpegs[0];
       return buffer.subarray(largest.start, largest.start + largest.length);
