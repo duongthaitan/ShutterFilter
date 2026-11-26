@@ -80,18 +80,15 @@ export const PresetManager: React.FC<PresetManagerProps> = ({
   };
 
   return (
-    <div className="panel-pro p-5 space-y-4 animate-fade-in">
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[var(--border-subtle)]">
-        <div className="flex items-center gap-2.5">
-          <Bookmark className="w-5 h-5 text-[var(--accent)]" />
-          <div>
-            <h2 className="text-sm font-bold text-[var(--text-main)]">
-              Bộ Lọc Đã Lưu (Presets)
-            </h2>
-            <p className="text-xs text-[var(--text-muted)]">
-              Lưu nhanh cấu hình lọc định dạng, từ khóa và chế độ cho từng máy ảnh hoặc dự án.
-            </p>
-          </div>
+    <div className="space-y-6 animate-fade-in">
+      <div className="flex flex-wrap items-end justify-between gap-4 pb-4 border-b border-[var(--border-hairline)]">
+        <div className="space-y-1">
+          <h2 className="text-lg font-semibold tracking-[-0.02em] text-[var(--text-main)]">
+            Bộ lọc mẫu
+          </h2>
+          <p className="text-xs text-[var(--text-muted)]">
+            Lưu cấu hình lọc định dạng, từ khóa và phương thức xử lý để dùng lại nhanh cho các bộ ảnh.
+          </p>
         </div>
 
         <div className="flex items-center gap-2">
@@ -111,7 +108,7 @@ export const PresetManager: React.FC<PresetManagerProps> = ({
             onClick={() => setActiveTab('new')}
             className="btn-accent text-xs"
           >
-            <Plus className="w-4 h-4" />
+            <Plus className="w-4 h-4" strokeWidth={1.9} />
             <span>Lưu cấu hình hiện tại</span>
           </button>
         </div>

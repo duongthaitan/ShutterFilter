@@ -28,6 +28,7 @@ import { PreviewTable } from './components/PreviewTable';
 import { HistoryView } from './components/HistoryView';
 import { PresetManager } from './components/PresetManager';
 import { ExecutionModal } from './components/ExecutionModal';
+import { StartupSplash } from './components/StartupSplash';
 
 type ToastType = 'info' | 'success' | 'warning' | 'error';
 
@@ -49,6 +50,7 @@ function normalizePathClient(p: string): string {
 }
 
 export const App: React.FC = () => {
+  const [showSplash, setShowSplash] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<'filter' | 'presets' | 'history'>('filter');
   const [activePresetName, setActivePresetName] = useState<string | undefined>(undefined);
 
@@ -139,7 +141,13 @@ export const App: React.FC = () => {
   }, [theme]);
 
   const toggleTheme = () => {
+    document.documentElement.classList.add('theme-switching');
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        document.documentElement.classList.remove('theme-switching');
+      });
+    });
   };
 
   // Realtime progress listener via IPC
@@ -405,21 +413,33 @@ export const App: React.FC = () => {
     }
   };
 
+  const handleSplashComplete = useCallback(() => {
+    setShowSplash(false);
+  }, []);
+
   return (
-    <div className="h-[100dvh] flex flex-col bg-[var(--bg-main)] text-[var(--text-main)] font-sans overflow-hidden">
-      {/* App Top Bar (48px height, single-line desktop nav) */}
-      <header className="h-12 bg-[var(--bg-panel)] border-b border-[var(--border-subtle)] px-4 flex items-center justify-between gap-3 shrink-0 select-none z-20">
-        {/* Brand */}
+    <div className="h-[100dvh] flex flex-col bg-[var(--bg-canvas)] text-[var(--text-main)] font-sans overflow-hidden">
+      {/* Studio Aperture Startup Loading Animation */}
+      {showSplash && <StartupSplash onComplete={handleSplashComplete} />}
+
+      {/* Precision Studio Top Chrome (52px, single-line hairline bar) */}
+      <header className="h-[52px] bg-[var(--bg-chrome)] backdrop-blur-md border-b border-[var(--border-hairline)] px-4 sm:px-5 flex items-center justify-between gap-3 shrink-0 select-none z-20">
+        {/* Brand Lockup */}
         <div className="flex items-center gap-2.5 min-w-0">
-          <div className="w-7 h-7 rounded-[4px] bg-[var(--accent)] flex items-center justify-center text-[var(--accent-text)] shrink-0">
-            <Camera className="w-4 h-4 stroke-[2.25]" />
+          <div className="w-7 h-7 rounded-[6px] bg-[var(--accent)] flex items-center justify-center text-[var(--accent-text)] shrink-0 shadow-xs">
+            <Camera className="w-4 h-4" strokeWidth={2.1} />
           </div>
-          <span className="text-sm font-bold text-[var(--text-main)] tracking-tight truncate">
-            ShutterFilter by Tandev.foto
-          </span>
+          <div className="flex items-baseline gap-2 min-w-0">
+            <span className="text-[14px] font-semibold text-[var(--text-main)] tracking-[-0.02em] truncate">
+              ShutterFilter
+            </span>
+            <span className="text-[11px] font-mono text-[var(--text-dim)] hidden sm:inline truncate">
+              Tandev.foto
+            </span>
+          </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* Navigation Switcher */}
         <nav className="segmented-control shrink-0" aria-label="Điều hướng chính">
           <button
             type="button"
@@ -428,8 +448,15 @@ export const App: React.FC = () => {
               activeTab === 'filter' ? 'active' : ''
             } flex items-center gap-1.5`}
           >
-            <Filter className="w-3.5 h-3.5 text-[var(--accent)]" />
-            <span>Lọc &amp; Sắp Xếp</span>
+            <Filter
+              className={`w-3.5 h-3.5 ${
+                activeTab === 'filter'
+                  ? 'text-[var(--accent)]'
+                  : 'text-[var(--text-dim)]'
+              }`}
+              strokeWidth={1.75}
+            />
+            <span>Lọc ảnh</span>
           </button>
           <button
             type="button"
@@ -438,8 +465,15 @@ export const App: React.FC = () => {
               activeTab === 'presets' ? 'active' : ''
             } flex items-center gap-1.5`}
           >
-            <Bookmark className="w-3.5 h-3.5 text-[var(--accent)]" />
-            <span>Bộ Lọc Mẫu</span>
+            <Bookmark
+              className={`w-3.5 h-3.5 ${
+                activeTab === 'presets'
+                  ? 'text-[var(--accent)]'
+                  : 'text-[var(--text-dim)]'
+              }`}
+              strokeWidth={1.75}
+            />
+            <span>Bộ lọc mẫu</span>
           </button>
           <button
             type="button"
@@ -448,16 +482,23 @@ export const App: React.FC = () => {
               activeTab === 'history' ? 'active' : ''
             } flex items-center gap-1.5`}
           >
-            <History className="w-3.5 h-3.5 text-[var(--accent)]" />
-            <span>Lịch Sử &amp; Undo</span>
+            <History
+              className={`w-3.5 h-3.5 ${
+                activeTab === 'history'
+                  ? 'text-[var(--accent)]'
+                  : 'text-[var(--text-dim)]'
+              }`}
+              strokeWidth={1.75}
+            />
+            <span>Lịch sử</span>
           </button>
         </nav>
 
-        {/* Theme Switcher */}
+        {/* Quiet Theme Switcher */}
         <button
           type="button"
           onClick={toggleTheme}
-          className="btn-secondary-pro py-1.5 px-3 text-xs font-mono shrink-0"
+          className="btn-secondary-pro py-1.5 px-2.5 text-xs shrink-0"
           title={
             theme === 'dark'
               ? 'Chuyển sang Giao diện Sáng'
@@ -466,28 +507,24 @@ export const App: React.FC = () => {
         >
           {theme === 'dark' ? (
             <>
-              <Sun className="w-3.5 h-3.5 text-[var(--accent)]" />
-              <span className="text-[var(--accent-strong)] font-semibold hidden sm:inline">
-                Giao diện Sáng
-              </span>
+              <Sun className="w-3.5 h-3.5 text-[var(--accent)]" strokeWidth={1.75} />
+              <span className="hidden sm:inline text-[var(--text-secondary)]">Sáng</span>
             </>
           ) : (
             <>
-              <Moon className="w-3.5 h-3.5 text-[var(--accent)]" />
-              <span className="text-[var(--text-main)] font-semibold hidden sm:inline">
-                Giao diện Tối
-              </span>
+              <Moon className="w-3.5 h-3.5 text-[var(--text-muted)]" strokeWidth={1.75} />
+              <span className="hidden sm:inline text-[var(--text-secondary)]">Tối</span>
             </>
           )}
         </button>
       </header>
 
-      {/* Main Workspace */}
-      <main className="flex-1 min-h-0 overflow-y-auto md:overflow-hidden p-3 bg-[var(--bg-main)]">
+      {/* Main Full-Bleed Architectural Workspace */}
+      <main className="flex-1 min-h-0 overflow-y-auto md:overflow-hidden bg-[var(--bg-canvas)]">
         {activeTab === 'filter' && (
-          <div className="h-full grid grid-cols-1 md:grid-cols-12 gap-3 items-stretch min-h-0">
-            {/* Left Control Sidebar */}
-            <div className="md:col-span-5 xl:col-span-4 flex flex-col gap-3 md:overflow-y-auto md:pr-1 min-h-0">
+          <div className="h-full flex flex-col md:flex-row min-h-0">
+            {/* Left Studio Inspector Rail (hairline-divided, zero nested card boxes) */}
+            <aside className="w-full md:w-[352px] lg:w-[376px] xl:w-[396px] shrink-0 bg-[var(--bg-rail)] border-b md:border-b-0 md:border-r border-[var(--border-hairline)] md:overflow-y-auto divide-y divide-[var(--border-hairline)] min-h-0">
               <FolderPicker
                 config={config}
                 onChange={handleConfigChange}
@@ -505,10 +542,10 @@ export const App: React.FC = () => {
               />
 
               <ModeAndPolicy config={config} onChange={handleConfigChange} />
-            </div>
+            </aside>
 
-            {/* Right Preview Hub */}
-            <div className="md:col-span-7 xl:col-span-8 min-h-[420px] md:min-h-0 h-full overflow-hidden">
+            {/* Right Light-Table Canvas */}
+            <section className="flex-1 min-w-0 min-h-[440px] md:min-h-0 h-full overflow-hidden bg-[var(--bg-canvas)]">
               <PreviewTable
                 config={config}
                 previewResult={previewResult}
@@ -517,35 +554,39 @@ export const App: React.FC = () => {
                 scanError={scanError}
                 hasPathConflict={hasPathConflict}
               />
-            </div>
+            </section>
           </div>
         )}
 
         {activeTab === 'presets' && (
-          <div className="h-full overflow-y-auto max-w-6xl mx-auto">
-            <PresetManager
-              currentConfig={config}
-              onApplyPreset={handleApplyPreset}
-              onNotify={showToast}
-            />
+          <div className="h-full overflow-y-auto px-5 py-6">
+            <div className="max-w-5xl mx-auto">
+              <PresetManager
+                currentConfig={config}
+                onApplyPreset={handleApplyPreset}
+                onNotify={showToast}
+              />
+            </div>
           </div>
         )}
 
         {activeTab === 'history' && (
-          <div className="h-full overflow-y-auto max-w-6xl mx-auto">
-            <HistoryView
-              onUndoComplete={handleUndoComplete}
-              onNotify={showToast}
-            />
+          <div className="h-full overflow-y-auto px-5 py-6">
+            <div className="max-w-5xl mx-auto">
+              <HistoryView
+                onUndoComplete={handleUndoComplete}
+                onNotify={showToast}
+              />
+            </div>
           </div>
         )}
       </main>
 
-      {/* Typed Dismissible Toast Notification (Top-Right below header so pagination is never occluded) */}
+      {/* Typed Dismissible Toast Notification (Centered above footer so neither top CTA nor pagination is occluded) */}
       {toast && (
-        <div className="fixed top-14 right-4 z-50 animate-fade-in max-w-md">
+        <div className="fixed bottom-14 left-1/2 -translate-x-1/2 z-50 animate-fade-in max-w-md w-max">
           <div
-            className={`bg-[var(--bg-card)] text-[var(--text-main)] text-xs px-3.5 py-2.5 rounded-[6px] border shadow-xl flex items-center gap-2.5 ${
+            className={`bg-[var(--bg-card)] text-[var(--text-main)] text-xs px-3.5 py-2.5 rounded-[8px] border flex items-center gap-2.5 ${
               toast.type === 'success'
                 ? 'border-[var(--status-success-border)]'
                 : toast.type === 'error'
@@ -554,15 +595,16 @@ export const App: React.FC = () => {
                 ? 'border-[var(--status-warning-border)]'
                 : 'border-[var(--border-subtle)]'
             }`}
+            style={{ boxShadow: 'var(--shadow-elevated)' }}
           >
             {toast.type === 'success' ? (
-              <CheckCircle2 className="w-4 h-4 text-[var(--status-success)] shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-[var(--status-success)] shrink-0" strokeWidth={1.75} />
             ) : toast.type === 'error' ? (
-              <XCircle className="w-4 h-4 text-[var(--status-danger)] shrink-0" />
+              <XCircle className="w-4 h-4 text-[var(--status-danger)] shrink-0" strokeWidth={1.75} />
             ) : toast.type === 'warning' ? (
-              <AlertTriangle className="w-4 h-4 text-[var(--status-warning)] shrink-0" />
+              <AlertTriangle className="w-4 h-4 text-[var(--status-warning)] shrink-0" strokeWidth={1.75} />
             ) : (
-              <Info className="w-4 h-4 text-[var(--accent)] shrink-0" />
+              <Info className="w-4 h-4 text-[var(--accent)] shrink-0" strokeWidth={1.75} />
             )}
             <span className="leading-snug">{toast.message}</span>
             <button
@@ -571,7 +613,7 @@ export const App: React.FC = () => {
               className="text-[var(--text-dim)] hover:text-[var(--text-main)] cursor-pointer ml-1 shrink-0"
               title="Đóng thông báo"
             >
-              <X className="w-3.5 h-3.5" />
+              <X className="w-3.5 h-3.5" strokeWidth={1.75} />
             </button>
           </div>
         </div>

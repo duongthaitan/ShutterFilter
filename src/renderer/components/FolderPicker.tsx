@@ -171,7 +171,7 @@ export const FolderPicker: React.FC<FolderPickerProps> = ({
   };
 
   return (
-    <div className="panel-pro p-3.5 space-y-3 animate-fade-in">
+    <section className="px-4 py-3.5 space-y-2.5">
       <input
         ref={sourceInputRef}
         type="file"
@@ -191,12 +191,12 @@ export const FolderPicker: React.FC<FolderPickerProps> = ({
         onChange={handleDestFilesSelected}
       />
 
-      <div className="flex items-center justify-between pb-2 border-b border-[var(--border-subtle)]">
+      <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Folder className="w-4 h-4 text-[var(--accent)]" />
-          <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--text-main)]">
-            Thư mục ảnh
-          </h3>
+          <Folder className="w-4 h-4 text-[var(--text-muted)]" strokeWidth={1.75} />
+          <h2 className="text-[13px] font-semibold tracking-[-0.01em] text-[var(--text-main)]">
+            Thư mục làm việc
+          </h2>
         </div>
 
         {currentSource && onRefreshSource && (
@@ -204,10 +204,13 @@ export const FolderPicker: React.FC<FolderPickerProps> = ({
             type="button"
             onClick={onRefreshSource}
             disabled={isScanning}
-            className="text-[11px] font-medium text-[var(--text-muted)] hover:text-[var(--accent-strong)] flex items-center gap-1 transition-colors cursor-pointer disabled:opacity-50"
+            className="btn-ghost-pro text-[11px] px-2 py-1"
             title="Quét lại thư mục nguồn để cập nhật file mới"
           >
-            <RefreshCw className={`w-3 h-3 ${isScanning ? 'animate-spin' : ''}`} />
+            <RefreshCw
+              className={`w-3 h-3 ${isScanning ? 'animate-spin' : ''}`}
+              strokeWidth={1.75}
+            />
             <span>Quét lại</span>
           </button>
         )}
@@ -215,7 +218,7 @@ export const FolderPicker: React.FC<FolderPickerProps> = ({
 
       {/* Source Folder Input with Drag & Drop */}
       <div
-        className="space-y-1"
+        className="space-y-1.5"
         onDragOver={(e) => {
           e.preventDefault();
           setDragTarget('source');
@@ -226,18 +229,18 @@ export const FolderPicker: React.FC<FolderPickerProps> = ({
         <div className="flex items-center justify-between">
           <label
             htmlFor="source-folder-input"
-            className="block text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wide"
+            className="block text-xs font-medium text-[var(--text-muted)]"
           >
-            Thư mục Nguồn (Ảnh gốc)
+            Thư mục nguồn
           </label>
           {currentSource && (
             <button
               type="button"
               onClick={() => window.electronAPI?.openFolder(currentSource)}
-              className="text-[10px] text-[var(--text-dim)] hover:text-[var(--accent-strong)] flex items-center gap-0.5 cursor-pointer transition-colors"
+              className="text-[11px] text-[var(--text-dim)] hover:text-[var(--text-main)] flex items-center gap-1 cursor-pointer transition-colors"
               title="Mở thư mục nguồn trong Explorer"
             >
-              <ExternalLink className="w-2.5 h-2.5" />
+              <ExternalLink className="w-3 h-3" strokeWidth={1.75} />
               <span>Mở</span>
             </button>
           )}
@@ -250,7 +253,7 @@ export const FolderPicker: React.FC<FolderPickerProps> = ({
             onChange={(e) =>
               onChange({ sourceFolder: e.target.value, source_folder: e.target.value })
             }
-            placeholder="Chọn hoặc kéo thả thư mục ảnh gốc"
+            placeholder="Chọn hoặc kéo thả thư mục ảnh gốc..."
             className={`input-pro pr-20 font-mono text-xs ${
               dragTarget === 'source' ? 'dropzone-active' : ''
             }`}
@@ -258,9 +261,9 @@ export const FolderPicker: React.FC<FolderPickerProps> = ({
           <button
             type="button"
             onClick={handleSelectSource}
-            className="absolute right-1 px-2.5 py-1 text-xs font-medium bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] active:scale-[0.97] text-[var(--text-main)] rounded-[4px] border border-[var(--border-subtle)] transition-all duration-150 flex items-center gap-1 cursor-pointer"
+            className="absolute right-1.5 px-2.5 py-1 text-xs font-medium bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] active:scale-[0.97] text-[var(--text-main)] rounded-[5px] border border-[var(--border-subtle)] transition-all duration-150 flex items-center gap-1.5 cursor-pointer"
           >
-            <FolderOpen className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <FolderOpen className="w-3.5 h-3.5 text-[var(--text-muted)]" strokeWidth={1.75} />
             <span>Duyệt</span>
           </button>
         </div>
@@ -268,7 +271,7 @@ export const FolderPicker: React.FC<FolderPickerProps> = ({
 
       {/* Destination Folder Input with Drag & Drop */}
       <div
-        className="space-y-1"
+        className="space-y-1.5"
         onDragOver={(e) => {
           e.preventDefault();
           setDragTarget('dest');
@@ -279,18 +282,18 @@ export const FolderPicker: React.FC<FolderPickerProps> = ({
         <div className="flex items-center justify-between">
           <label
             htmlFor="dest-folder-input"
-            className="block text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wide"
+            className="block text-xs font-medium text-[var(--text-muted)]"
           >
-            Thư mục Đích (Nơi lưu kết quả)
+            Thư mục đích
           </label>
           {currentSource && !currentDest && (
             <button
               type="button"
               onClick={handleQuickSubfolderDest}
-              className="text-[10px] font-medium text-[var(--accent-strong)] hover:underline flex items-center gap-1 cursor-pointer"
+              className="text-[11px] font-medium text-[var(--accent-strong)] hover:underline flex items-center gap-1 cursor-pointer"
               title="Tự động tạo thư mục con Da_Loc bên trong thư mục nguồn"
             >
-              <FolderPlus className="w-3 h-3" />
+              <FolderPlus className="w-3 h-3" strokeWidth={1.75} />
               <span>Tạo nhanh /Da_Loc</span>
             </button>
           )}
@@ -298,10 +301,10 @@ export const FolderPicker: React.FC<FolderPickerProps> = ({
             <button
               type="button"
               onClick={() => window.electronAPI?.openFolder(currentDest)}
-              className="text-[10px] text-[var(--text-dim)] hover:text-[var(--accent-strong)] flex items-center gap-0.5 cursor-pointer transition-colors"
+              className="text-[11px] text-[var(--text-dim)] hover:text-[var(--text-main)] flex items-center gap-1 cursor-pointer transition-colors"
               title="Mở thư mục đích trong Explorer"
             >
-              <ExternalLink className="w-2.5 h-2.5" />
+              <ExternalLink className="w-3 h-3" strokeWidth={1.75} />
               <span>Mở</span>
             </button>
           )}
@@ -314,7 +317,7 @@ export const FolderPicker: React.FC<FolderPickerProps> = ({
             onChange={(e) =>
               onChange({ destFolder: e.target.value, destination_folder: e.target.value })
             }
-            placeholder="Chọn hoặc kéo thả thư mục ảnh đã lọc"
+            placeholder="Chọn hoặc kéo thả nơi lưu ảnh đã lọc..."
             className={`input-pro pr-20 font-mono text-xs ${
               dragTarget === 'dest' ? 'dropzone-active' : ''
             } ${hasPathConflict ? 'border-[var(--status-danger)]' : ''}`}
@@ -322,9 +325,9 @@ export const FolderPicker: React.FC<FolderPickerProps> = ({
           <button
             type="button"
             onClick={handleSelectDestination}
-            className="absolute right-1 px-2.5 py-1 text-xs font-medium bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] active:scale-[0.97] text-[var(--text-main)] rounded-[4px] border border-[var(--border-subtle)] transition-all duration-150 flex items-center gap-1 cursor-pointer"
+            className="absolute right-1.5 px-2.5 py-1 text-xs font-medium bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] active:scale-[0.97] text-[var(--text-main)] rounded-[5px] border border-[var(--border-subtle)] transition-all duration-150 flex items-center gap-1.5 cursor-pointer"
           >
-            <FolderOpen className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <FolderOpen className="w-3.5 h-3.5 text-[var(--text-muted)]" strokeWidth={1.75} />
             <span>Duyệt</span>
           </button>
         </div>
@@ -332,11 +335,11 @@ export const FolderPicker: React.FC<FolderPickerProps> = ({
 
       {/* Inline validation alert when source === dest */}
       {hasPathConflict && (
-        <div className="flex items-start gap-2 p-2 rounded-[4px] bg-[var(--status-danger-bg)] border border-[var(--status-danger-border)] text-[11px] text-[var(--status-danger)]">
-          <AlertCircle className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+        <div className="flex items-start gap-2 p-2.5 rounded-[6px] bg-[var(--status-danger-bg)] border border-[var(--status-danger-border)] text-xs text-[var(--status-danger)]">
+          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" strokeWidth={1.75} />
           <span>Thư mục nguồn và thư mục đích không được trùng nhau.</span>
         </div>
       )}
-    </div>
+    </section>
   );
 };

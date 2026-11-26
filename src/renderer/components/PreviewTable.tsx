@@ -6,7 +6,6 @@ import {
   Search,
   FileImage,
   AlertTriangle,
-  Info,
   X,
   ChevronLeft,
   ChevronRight,
@@ -22,6 +21,10 @@ import {
   Square,
   AlertCircle,
   Camera,
+  LayoutGrid,
+  List,
+  CheckCircle2,
+  Circle,
 } from 'lucide-react';
 import { FilterConfig, FileEntry, PreviewResult } from '../../shared/types';
 import {
@@ -57,6 +60,22 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
 
   const [sortField, setSortField] = useState<SortField>('filename');
   const [sortDir, setSortDir] = useState<SortDirection>('asc');
+  const [viewMode, setViewMode] = useState<'list' | 'grid'>(() => {
+    try {
+      return (localStorage.getItem('shutter_view_mode') as 'list' | 'grid') || 'list';
+    } catch {
+      return 'list';
+    }
+  });
+
+  const handleViewModeChange = (nextMode: 'list' | 'grid') => {
+    setViewMode(nextMode);
+    try {
+      localStorage.setItem('shutter_view_mode', nextMode);
+    } catch {
+      // Ignore storage error
+    }
+  };
 
   // Lightbox state
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -333,38 +352,78 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
     filteredAndSortedMatches.length === 0 ? 0 : (currentPage - 1) * pageSize + 1;
   const endRange = Math.min(currentPage * pageSize, filteredAndSortedMatches.length);
 
+  const actionVerb = config.mode === 'move' ? 'Di chuyển' : 'Sao chép';
+
   return (
-    <div className="panel-pro h-full flex flex-col overflow-hidden animate-fade-in">
-      {/* Workstation Header Toolbar */}
-      <div className="p-3 border-b border-[var(--border-subtle)] bg-[var(--bg-panel)] flex flex-wrap items-center justify-between gap-2.5 shrink-0">
-        <div className="flex flex-wrap items-center gap-2">
-          <div className="text-xs font-mono text-[var(--text-main)] flex items-center gap-2 bg-[var(--bg-card-inset)] px-3 py-1.5 rounded-[4px] border border-[var(--border-subtle)]">
-            <span className="text-[var(--accent-strong)] font-bold">
+    <div className="h-full flex flex-col overflow-hidden bg-[var(--bg-canvas)]">
+      {/* Studio Light-Table Top Toolbar */}
+      <div className="px-4 sm:px-5 py-3 border-b border-[var(--border-hairline)] bg-[var(--bg-canvas)] flex flex-wrap items-center justify-between gap-3 shrink-0">
+        {/* Live Selection Metrics (Unboxed, clean tabular typography) */}
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="flex items-baseline gap-2 font-mono tabular-nums">
+            <span className="text-sm font-semibold text-[var(--text-main)]">
               {selectedFiles.length.toLocaleString('vi-VN')}
-              {selectedFiles.length !== matchedList.length &&
-                ` / ${matchedList.length.toLocaleString('vi-VN')}`}{' '}
+              {selectedFiles.length !== matchedList.length && (
+                <span className="text-[var(--text-dim)] font-normal">
+                  {' '}
+                  / {matchedList.length.toLocaleString('vi-VN')}
+                </span>
+              )}{' '}
               ảnh
             </span>
-            <span className="text-[var(--text-dim)]">|</span>
-            <span>{formatFileSize(selectedSizeBytes)}</span>
+            <span className="text-xs text-[var(--text-muted)]">
+              {formatFileSize(selectedSizeBytes)}
+            </span>
             {previewResult?.scan_duration_ms !== undefined && matchedList.length > 0 && (
-              <>
-                <span className="text-[var(--text-dim)] hidden xl:inline">|</span>
-                <span className="text-[var(--text-dim)] hidden xl:inline text-[11px]">
-                  {previewResult.scan_duration_ms}ms
-                </span>
-              </>
+              <span className="text-[11px] text-[var(--text-dim)] hidden xl:inline">
+                {previewResult.scan_duration_ms}ms
+              </span>
             )}
           </div>
+
+          {config.mode === 'move' && (
+            <span className="badge-pro badge-rose">
+              <AlertTriangle className="w-3 h-3 shrink-0" strokeWidth={1.75} />
+              <span>Di chuyển</span>
+            </span>
+          )}
         </div>
 
-        {/* Primary Action Button */}
-        <div className="flex items-center gap-2">
-          {config.mode === 'move' && (
-            <span className="text-[11px] font-mono text-[var(--status-danger)] flex items-center gap-1 bg-[var(--status-danger-bg)] px-2 py-1 rounded-[4px] border border-[var(--status-danger-border)]">
-              <AlertTriangle className="w-3 h-3 shrink-0" />
-              <span>Chế độ Di Chuyển</span>
-            </span>
+        {/* View Switcher + Singular Primary CTA */}
+        <div className="flex items-center gap-2.5">
+          {matchedList.length > 0 && (
+            <div
+              className="inline-flex items-center bg-[var(--bg-card-inset)] p-0.5 rounded-[6px] border border-[var(--border-hairline)]"
+              role="group"
+              aria-label="Chế độ hiển thị"
+            >
+              <button
+                type="button"
+                onClick={() => handleViewModeChange('list')}
+                className={`px-2 py-1 rounded-[4px] text-xs flex items-center gap-1.5 transition-colors cursor-pointer ${
+                  viewMode === 'list'
+                    ? 'bg-[var(--bg-card)] text-[var(--text-main)] font-medium border border-[var(--border-subtle)] shadow-2xs'
+                    : 'text-[var(--text-muted)] hover:text-[var(--text-main)] border border-transparent'
+                }`}
+                title="Chế độ danh sách chi tiết"
+              >
+                <List className="w-3.5 h-3.5" strokeWidth={1.75} />
+                <span className="hidden lg:inline">Danh sách</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleViewModeChange('grid')}
+                className={`px-2 py-1 rounded-[4px] text-xs flex items-center gap-1.5 transition-colors cursor-pointer ${
+                  viewMode === 'grid'
+                    ? 'bg-[var(--bg-card)] text-[var(--text-main)] font-medium border border-[var(--border-subtle)] shadow-2xs'
+                    : 'text-[var(--text-muted)] hover:text-[var(--text-main)] border border-transparent'
+                }`}
+                title="Chế độ lưới ảnh Contact Sheet"
+              >
+                <LayoutGrid className="w-3.5 h-3.5" strokeWidth={1.75} />
+                <span className="hidden lg:inline">Lưới ảnh</span>
+              </button>
+            </div>
           )}
 
           <button
@@ -381,8 +440,8 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
             className="btn-accent text-xs px-4 py-2"
           >
             <Play className="w-3.5 h-3.5 fill-current" />
-            <span>
-              Chạy Lọc Ảnh ({selectedFiles.length.toLocaleString('vi-VN')} ảnh)
+            <span className="tabular-nums">
+              {actionVerb} {selectedFiles.length.toLocaleString('vi-VN')} ảnh
             </span>
           </button>
         </div>
@@ -390,14 +449,14 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
 
       {/* Main Content Area */}
       {scanError ? (
-        <div className="flex-1 flex flex-col items-center justify-center p-10 text-center space-y-3 bg-[var(--bg-panel)]">
-          <div className="w-12 h-12 rounded-full bg-[var(--status-danger-bg)] border border-[var(--status-danger-border)] flex items-center justify-center">
-            <AlertCircle className="w-6 h-6 text-[var(--status-danger)]" />
+        <div className="flex-1 flex flex-col items-center justify-center p-10 text-center space-y-3">
+          <div className="w-11 h-11 rounded-[8px] bg-[var(--status-danger-bg)] border border-[var(--status-danger-border)] flex items-center justify-center">
+            <AlertCircle className="w-5 h-5 text-[var(--status-danger)]" strokeWidth={1.75} />
           </div>
           <div className="space-y-1 max-w-md">
-            <h4 className="text-sm font-bold text-[var(--text-main)]">
+            <h3 className="text-sm font-semibold text-[var(--text-main)]">
               Không thể quét thư mục nguồn
-            </h4>
+            </h3>
             <p className="text-xs text-[var(--status-danger)] font-mono break-all">
               {scanError}
             </p>
@@ -405,15 +464,15 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
         </div>
       ) : isLoading && !previewResult ? (
         /* Skeleton Loader Rows */
-        <div className="flex-1 p-4 space-y-2.5 overflow-hidden bg-[var(--bg-main)]">
-          <div className="flex items-center justify-between mb-3">
-            <div className="skeleton-bar h-7 w-56" />
-            <div className="skeleton-bar h-5 w-32" />
+        <div className="flex-1 p-5 space-y-3 overflow-hidden">
+          <div className="flex items-center justify-between mb-4">
+            <div className="skeleton-bar h-8 w-60" />
+            <div className="skeleton-bar h-4 w-36" />
           </div>
           {Array.from({ length: 8 }).map((_, idx) => (
             <div
               key={idx}
-              className="flex items-center gap-3 p-2.5 rounded-[4px] bg-[var(--bg-panel)] border border-[var(--border-subtle)]"
+              className="flex items-center gap-3.5 py-2.5 border-b border-[var(--table-divide)]"
             >
               <div className="skeleton-bar w-9 h-9 shrink-0" />
               <div className="skeleton-bar h-4 flex-1 max-w-[220px]" />
@@ -423,102 +482,301 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
             </div>
           ))}
         </div>
-      ) : !sourcePath ? (
-        /* Empty State Step 1: No Source Folder */
-        <div className="flex-1 flex flex-col items-center justify-center p-10 text-center text-[var(--text-muted)] space-y-3 animate-fade-in bg-[var(--bg-panel)]">
-          <div className="w-12 h-12 rounded-full bg-[var(--bg-card-inset)] border border-[var(--border-subtle)] flex items-center justify-center">
-            <FolderOpen className="w-6 h-6 text-[var(--accent)]" />
-          </div>
-          <div className="space-y-1 max-w-md">
-            <h4 className="text-sm font-bold text-[var(--text-main)]">
-              Bước 1: Chọn thư mục chứa ảnh gốc
-            </h4>
-            <p className="text-xs text-[var(--text-muted)] leading-relaxed">
-              Bấm <strong className="text-[var(--text-main)]">Duyệt</strong> hoặc kéo thả thư mục ảnh gốc vào ô <strong className="text-[var(--text-main)]">Thư mục Nguồn</strong> bên trái để nhận diện định dạng ảnh tự động.
-            </p>
-          </div>
-        </div>
-      ) : !hasKeywords ? (
-        /* Empty State Step 2: Folder Selected, Waiting for Keywords */
-        <div className="flex-1 flex flex-col items-center justify-center p-10 text-center text-[var(--text-muted)] space-y-3 animate-fade-in bg-[var(--bg-panel)]">
-          <div className="w-12 h-12 rounded-full bg-[var(--accent-bg-alpha)] border border-[var(--accent-border-alpha)] flex items-center justify-center">
-            <Info className="w-6 h-6 text-[var(--accent)]" />
-          </div>
-          <div className="space-y-1.5 max-w-md">
-            <h4 className="text-sm font-bold text-[var(--text-main)]">
-              Bước 2: Dán danh sách tên ảnh cần lọc
-            </h4>
-            {previewResult?.totalFolderImages !== undefined && (
-              <p className="text-xs font-mono text-[var(--accent-strong)]">
-                Đã quét sẵn {previewResult.totalFolderImages.toLocaleString('vi-VN')} ảnh hợp lệ trong thư mục nguồn
+      ) : !sourcePath || !hasKeywords ? (
+        /* Editorial Live-Checklist Empty State */
+        <div className="flex-1 flex items-center justify-center p-8 sm:p-12 overflow-y-auto">
+          <div className="max-w-md w-full space-y-6 animate-fade-in">
+            <div className="space-y-2">
+              <div className="w-10 h-10 rounded-[8px] bg-[var(--accent-bg-alpha)] border border-[var(--accent-border-alpha)] flex items-center justify-center text-[var(--accent)] mb-4">
+                <Camera className="w-5 h-5" strokeWidth={1.75} />
+              </div>
+              <h3 className="text-lg font-semibold tracking-[-0.02em] text-[var(--text-main)]">
+                {!sourcePath
+                  ? 'Bắt đầu lọc ảnh cho phiên làm việc'
+                  : 'Đã sẵn sàng đối chiếu danh sách ảnh'}
+              </h3>
+              <p className="text-[13px] text-[var(--text-muted)] leading-relaxed">
+                {!sourcePath
+                  ? 'Chọn hoặc kéo thả thư mục ảnh gốc vào thanh điều khiển bên trái, sau đó dán danh sách tên file khách hàng đã chọn.'
+                  : previewResult?.totalFolderImages !== undefined
+                  ? `Đã tìm thấy ${previewResult.totalFolderImages.toLocaleString('vi-VN')} ảnh hợp lệ trong thư mục nguồn. Dán danh sách tên file ở cột trái để xem kết quả ngay.`
+                  : 'Dán danh sách tên file vào ô bên trái để tự động đối chiếu theo thời gian thực.'}
               </p>
-            )}
-            <p className="text-xs text-[var(--text-muted)] leading-relaxed">
-              Nhập hoặc dán danh sách tên file khách hàng chọn vào ô <strong className="text-[var(--text-main)]">Danh sách tên file</strong> bên trái. Kết quả khớp sẽ hiển thị ngay lập tức.
-            </p>
+            </div>
+
+            {/* Live Studio Workflow Steps (hairline divided, zero box clutter) */}
+            <div className="border-t border-[var(--border-hairline)] divide-y divide-[var(--border-hairline)]">
+              <div className="py-3 flex items-center justify-between gap-3 text-xs">
+                <div className="flex items-center gap-2.5">
+                  {sourcePath ? (
+                    <CheckCircle2 className="w-4 h-4 text-[var(--status-success)] shrink-0" strokeWidth={1.85} />
+                  ) : (
+                    <Circle className="w-4 h-4 text-[var(--accent)] shrink-0" strokeWidth={1.75} />
+                  )}
+                  <span
+                    className={
+                      sourcePath
+                        ? 'text-[var(--text-muted)] line-through'
+                        : 'text-[var(--text-main)] font-medium'
+                    }
+                  >
+                    Chọn thư mục nguồn chứa ảnh gốc
+                  </span>
+                </div>
+                {sourcePath && (
+                  <span className="text-[11px] font-mono text-[var(--status-success)]">
+                    Xong
+                  </span>
+                )}
+              </div>
+
+              <div className="py-3 flex items-center justify-between gap-3 text-xs">
+                <div className="flex items-center gap-2.5">
+                  {hasKeywords ? (
+                    <CheckCircle2 className="w-4 h-4 text-[var(--status-success)] shrink-0" strokeWidth={1.85} />
+                  ) : (
+                    <Circle
+                      className={`w-4 h-4 shrink-0 ${
+                        sourcePath ? 'text-[var(--accent)]' : 'text-[var(--text-dim)]'
+                      }`}
+                      strokeWidth={1.75}
+                    />
+                  )}
+                  <span
+                    className={
+                      hasKeywords
+                        ? 'text-[var(--text-muted)] line-through'
+                        : sourcePath
+                        ? 'text-[var(--text-main)] font-medium'
+                        : 'text-[var(--text-muted)]'
+                    }
+                  >
+                    Dán danh sách tên ảnh cần tách
+                  </span>
+                </div>
+                {hasKeywords && (
+                  <span className="text-[11px] font-mono text-[var(--status-success)]">
+                    Xong
+                  </span>
+                )}
+              </div>
+
+              <div className="py-3 flex items-center justify-between gap-3 text-xs">
+                <div className="flex items-center gap-2.5">
+                  {destPath ? (
+                    <CheckCircle2 className="w-4 h-4 text-[var(--status-success)] shrink-0" strokeWidth={1.85} />
+                  ) : (
+                    <Circle className="w-4 h-4 text-[var(--text-dim)] shrink-0" strokeWidth={1.75} />
+                  )}
+                  <span
+                    className={
+                      destPath
+                        ? 'text-[var(--text-muted)] line-through'
+                        : 'text-[var(--text-muted)]'
+                    }
+                  >
+                    Chỉ định thư mục đích lưu kết quả
+                  </span>
+                </div>
+                {destPath && (
+                  <span className="text-[11px] font-mono text-[var(--status-success)]">
+                    Xong
+                  </span>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       ) : (
         <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-          {/* Table Search & Info Sub-bar */}
-          <div className="px-3.5 py-2 bg-[var(--bg-card-inset)] border-b border-[var(--border-subtle)] flex flex-wrap items-center justify-between gap-3 text-xs shrink-0">
-            <div className="relative flex-1 min-w-[180px] max-w-xs flex items-center">
-              <Search className="w-3.5 h-3.5 absolute left-2.5 text-[var(--text-dim)] pointer-events-none" />
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Tìm nhanh trong kết quả..."
-                style={{ paddingLeft: '30px', paddingRight: searchTerm ? '28px' : undefined }}
-                className="input-pro py-1.5 text-xs font-mono"
-              />
-              {searchTerm && (
+          {/* Sub-bar: Search + Range + Select All in Grid mode */}
+          <div className="px-4 sm:px-5 py-2.5 border-b border-[var(--border-hairline)] flex flex-wrap items-center justify-between gap-3 text-xs shrink-0 bg-[var(--bg-canvas)]">
+            <div className="flex items-center gap-2.5 flex-1 min-w-[200px]">
+              <div className="relative flex-1 max-w-xs flex items-center">
+                <Search
+                  className="w-3.5 h-3.5 absolute left-2.5 text-[var(--text-dim)] pointer-events-none"
+                  strokeWidth={1.75}
+                />
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Tìm tên file trong kết quả..."
+                  style={{
+                    paddingLeft: '32px',
+                    paddingRight: searchTerm ? '28px' : undefined,
+                  }}
+                  className="input-pro py-1.5 text-xs font-mono"
+                />
+                {searchTerm && (
+                  <button
+                    type="button"
+                    onClick={() => setSearchTerm('')}
+                    className="absolute right-2 text-[var(--text-dim)] hover:text-[var(--text-main)] cursor-pointer"
+                    title="Xóa từ khóa tìm kiếm"
+                  >
+                    <X className="w-3.5 h-3.5" strokeWidth={1.75} />
+                  </button>
+                )}
+              </div>
+
+              {viewMode === 'grid' && filteredAndSortedMatches.length > 0 && (
                 <button
                   type="button"
-                  onClick={() => setSearchTerm('')}
-                  className="absolute right-2 text-[var(--text-dim)] hover:text-[var(--text-main)] cursor-pointer"
-                  title="Xóa từ khóa tìm kiếm"
+                  onClick={toggleSelectAllFiltered}
+                  className="btn-ghost-pro text-xs"
                 >
-                  <X className="w-3.5 h-3.5" />
+                  {allFilteredSelected ? (
+                    <CheckSquare className="w-3.5 h-3.5 text-[var(--accent)]" strokeWidth={1.85} />
+                  ) : (
+                    <Square className="w-3.5 h-3.5 text-[var(--text-dim)]" strokeWidth={1.75} />
+                  )}
+                  <span>{allFilteredSelected ? 'Bỏ chọn tất cả' : 'Chọn tất cả'}</span>
                 </button>
               )}
             </div>
 
-            <div className="flex items-center gap-3 text-xs text-[var(--text-muted)] font-mono">
+            <div className="flex items-center gap-3 text-xs text-[var(--text-muted)] font-mono tabular-nums">
               {isLoading && (
                 <span className="text-[var(--accent-strong)] text-[11px] animate-pulse">
                   Đang cập nhật...
                 </span>
               )}
               <span>
-                Hiển thị {startRange.toLocaleString('vi-VN')} -{' '}
-                {endRange.toLocaleString('vi-VN')} /{' '}
+                {startRange.toLocaleString('vi-VN')}-{endRange.toLocaleString('vi-VN')} /{' '}
                 {filteredAndSortedMatches.length.toLocaleString('vi-VN')} ảnh
               </span>
             </div>
           </div>
 
-          {/* Table Container */}
-          <div className="flex-1 overflow-auto bg-[var(--bg-main)]">
+          {/* Results Surface: List Table OR Contact Sheet Grid */}
+          <div className="flex-1 overflow-auto bg-[var(--bg-canvas)]">
             {filteredAndSortedMatches.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center p-8 text-center text-[var(--text-muted)] space-y-2 animate-fade-in">
-                <FileImage className="w-8 h-8 text-[var(--text-dim)]" />
+                <FileImage className="w-8 h-8 text-[var(--text-dim)]" strokeWidth={1.5} />
                 <p className="text-xs font-semibold text-[var(--text-main)]">
                   {searchTerm.trim()
                     ? 'Không tìm thấy ảnh khớp với từ khóa tìm nhanh.'
                     : 'Không tìm thấy ảnh nào khớp điều kiện lọc.'}
                 </p>
                 {!searchTerm.trim() && (
-                  <p className="text-[11px] text-[var(--text-muted)] max-w-sm">
-                    Hãy thử bấm <strong className="text-[var(--text-main)]">Chuẩn hóa</strong> danh sách tên file, kiểm tra chế độ khớp ({config.match_type}), hoặc đặt lại bộ lọc định dạng ảnh.
+                  <p className="text-xs text-[var(--text-muted)] max-w-sm">
+                    Hãy thử bấm <strong className="text-[var(--text-main)]">Chuẩn hóa</strong> danh sách tên file, kiểm tra kiểu đối chiếu hoặc đặt lại bộ lọc định dạng.
                   </p>
                 )}
               </div>
+            ) : viewMode === 'grid' ? (
+              /* Studio Contact Sheet Grid (No overlay pills on images - captions cleanly below) */
+              <div className="p-4 sm:p-5 grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+                {paginatedMatches.map((file, rowIdx) => {
+                  const fileName = file.filename || file.name || '';
+                  const filePath = file.sourcePath || file.path || '';
+                  const fileSize = file.sizeBytes ?? file.size ?? 0;
+                  const fileId = file.id || filePath || fileName;
+                  const extClean = normalizeExtension(file.extension);
+                  const isRaw = isRawExtension(extClean);
+                  const isSelected = !deselectedIds.has(fileId);
+                  const globalIdx = (currentPage - 1) * pageSize + rowIdx;
+
+                  const imgUrl = getFileThumbnailUrl(file);
+                  const hasMockPreview = Boolean(
+                    (file as FileEntry & { previewUrl?: string }).previewUrl
+                  );
+                  const canRenderDirectThumb =
+                    Boolean(imgUrl) &&
+                    !failedImages[fileId] &&
+                    (!isRaw || hasMockPreview);
+
+                  return (
+                    <article
+                      key={fileId}
+                      className={`group rounded-[8px] border overflow-hidden bg-[var(--bg-card)] transition-all duration-150 flex flex-col ${
+                        isSelected
+                          ? 'border-[var(--border-subtle)] hover:border-[var(--border-focus)]'
+                          : 'border-[var(--border-hairline)] opacity-50'
+                      }`}
+                    >
+                      {/* Clean Photographic Frame (Zero overlaid badges) */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setLightboxIndex(globalIdx);
+                          setIsZoomed(false);
+                        }}
+                        className="aspect-[4/3] w-full bg-[#0e0e12] flex items-center justify-center overflow-hidden cursor-pointer relative"
+                        title="Bấm để mở khung xem ảnh phóng to"
+                      >
+                        {canRenderDirectThumb ? (
+                          <img
+                            src={imgUrl}
+                            alt={fileName}
+                            onError={() =>
+                              setFailedImages((prev) => ({ ...prev, [fileId]: true }))
+                            }
+                            className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300 ease-out"
+                            loading="lazy"
+                          />
+                        ) : isRaw ? (
+                          <div className="flex flex-col items-center justify-center gap-1.5 text-zinc-400">
+                            <Camera className="w-7 h-7 text-amber-400" strokeWidth={1.5} />
+                            <span className="text-[11px] font-mono tracking-wider text-amber-400">
+                              .{extClean.toUpperCase()} RAW
+                            </span>
+                          </div>
+                        ) : (
+                          <FileImage className="w-8 h-8 text-zinc-500" strokeWidth={1.5} />
+                        )}
+                      </button>
+
+                      {/* Clean Caption & Selection Footer Below Frame */}
+                      <div className="p-2.5 flex items-start justify-between gap-2 border-t border-[var(--border-hairline)]">
+                        <button
+                          type="button"
+                          onClick={() => toggleSelectFile(fileId)}
+                          className="mt-0.5 text-[var(--text-muted)] hover:text-[var(--accent)] cursor-pointer shrink-0"
+                          title={isSelected ? 'Bỏ chọn ảnh này' : 'Chọn ảnh này'}
+                        >
+                          {isSelected ? (
+                            <CheckSquare className="w-4 h-4 text-[var(--accent)]" strokeWidth={1.9} />
+                          ) : (
+                            <Square className="w-4 h-4" strokeWidth={1.75} />
+                          )}
+                        </button>
+
+                        <div className="min-w-0 flex-1">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setLightboxIndex(globalIdx);
+                              setIsZoomed(false);
+                            }}
+                            className="block w-full text-left font-mono text-xs font-semibold text-[var(--text-main)] hover:text-[var(--accent-strong)] truncate cursor-pointer transition-colors"
+                            title={fileName}
+                          >
+                            {fileName}
+                          </button>
+                          <div className="flex items-center justify-between gap-2 mt-1 text-[11px] font-mono tabular-nums text-[var(--text-muted)]">
+                            <span
+                              className={`badge-pro ${
+                                isRaw ? 'badge-amber' : 'badge-neutral'
+                              }`}
+                            >
+                              .{extClean}
+                            </span>
+                            <span>{formatFileSize(fileSize)}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
             ) : (
+              /* Precision Studio Table View */
               <table className="w-full text-left text-xs font-mono border-collapse">
-                <thead className="bg-[var(--table-header-bg)] sticky top-0 z-10 border-b border-[var(--border-subtle)] text-[var(--text-muted)] uppercase text-[10px] tracking-wider">
+                <thead className="bg-[var(--table-header-bg)] sticky top-0 z-10 border-b border-[var(--border-hairline)] text-[var(--text-muted)] text-[11px] font-sans font-medium">
                   <tr>
-                    <th className="p-2.5 w-10 text-center">
+                    <th className="py-2.5 px-3 w-10 text-center">
                       <button
                         type="button"
                         onClick={toggleSelectAllFiltered}
@@ -530,54 +788,56 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
                         }
                       >
                         {allFilteredSelected ? (
-                          <CheckSquare className="w-4 h-4 text-[var(--accent)]" />
+                          <CheckSquare className="w-4 h-4 text-[var(--accent)]" strokeWidth={1.9} />
                         ) : (
-                          <Square className="w-4 h-4" />
+                          <Square className="w-4 h-4" strokeWidth={1.75} />
                         )}
                       </button>
                     </th>
-                    <th className="p-2.5 w-14 text-center whitespace-nowrap">Ảnh</th>
-                    <th className="p-2.5 whitespace-nowrap">
+                    <th className="py-2.5 px-2 w-14 text-center whitespace-nowrap">Ảnh</th>
+                    <th className="py-2.5 px-3 whitespace-nowrap">
                       <button
                         type="button"
                         onClick={() => handleSort('filename')}
-                        className="inline-flex items-center gap-1 hover:text-[var(--text-main)] cursor-pointer uppercase whitespace-nowrap"
+                        className="inline-flex items-center gap-1 hover:text-[var(--text-main)] cursor-pointer whitespace-nowrap"
                       >
                         <span>Tên file</span>
                         {renderSortIcon('filename')}
                       </button>
                     </th>
-                    <th className="p-2.5 whitespace-nowrap">
+                    <th className="py-2.5 px-3 whitespace-nowrap">
                       <button
                         type="button"
                         onClick={() => handleSort('extension')}
-                        className="inline-flex items-center gap-1 hover:text-[var(--text-main)] cursor-pointer uppercase whitespace-nowrap"
+                        className="inline-flex items-center gap-1 hover:text-[var(--text-main)] cursor-pointer whitespace-nowrap"
                       >
                         <span>Định dạng</span>
                         {renderSortIcon('extension')}
                       </button>
                     </th>
-                    <th className="p-2.5 text-right whitespace-nowrap">
+                    <th className="py-2.5 px-3 text-right whitespace-nowrap">
                       <button
                         type="button"
                         onClick={() => handleSort('sizeBytes')}
-                        className="inline-flex items-center gap-1 hover:text-[var(--text-main)] cursor-pointer uppercase ml-auto whitespace-nowrap"
+                        className="inline-flex items-center gap-1 hover:text-[var(--text-main)] cursor-pointer ml-auto whitespace-nowrap"
                       >
                         <span>Dung lượng</span>
                         {renderSortIcon('sizeBytes')}
                       </button>
                     </th>
-                    <th className="p-2.5 whitespace-nowrap">
+                    <th className="py-2.5 px-3 whitespace-nowrap">
                       <button
                         type="button"
                         onClick={() => handleSort('dateTaken')}
-                        className="inline-flex items-center gap-1 hover:text-[var(--text-main)] cursor-pointer uppercase whitespace-nowrap"
+                        className="inline-flex items-center gap-1 hover:text-[var(--text-main)] cursor-pointer whitespace-nowrap"
                       >
                         <span>Ngày chụp</span>
                         {renderSortIcon('dateTaken')}
                       </button>
                     </th>
-                    <th className="p-2.5 hidden xl:table-cell whitespace-nowrap">Đường dẫn nguồn</th>
+                    <th className="py-2.5 px-3 hidden xl:table-cell whitespace-nowrap">
+                      Đường dẫn nguồn
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[var(--table-divide)]">
@@ -608,11 +868,11 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
                           setIsZoomed(false);
                         }}
                         className={`hover:bg-[var(--table-row-hover)] transition-colors duration-150 group ${
-                          !isSelected ? 'opacity-50' : ''
+                          !isSelected ? 'opacity-45' : ''
                         }`}
                       >
                         {/* Row Checkbox */}
-                        <td className="p-2 w-10 text-center align-middle">
+                        <td className="py-2 px-3 w-10 text-center align-middle">
                           <button
                             type="button"
                             onClick={() => toggleSelectFile(fileId)}
@@ -620,23 +880,23 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
                             title={isSelected ? 'Bỏ chọn ảnh này' : 'Chọn ảnh này'}
                           >
                             {isSelected ? (
-                              <CheckSquare className="w-4 h-4 text-[var(--accent)]" />
+                              <CheckSquare className="w-4 h-4 text-[var(--accent)]" strokeWidth={1.9} />
                             ) : (
-                              <Square className="w-4 h-4" />
+                              <Square className="w-4 h-4" strokeWidth={1.75} />
                             )}
                           </button>
                         </td>
 
                         {/* Thumbnail */}
-                        <td className="p-2 w-14 text-center align-middle">
+                        <td className="py-2 px-2 w-14 text-center align-middle">
                           <button
                             type="button"
                             onClick={() => {
                               setLightboxIndex(globalIdx);
                               setIsZoomed(false);
                             }}
-                            className="w-10 h-10 rounded-[4px] bg-[var(--bg-card-inset)] border border-[var(--border-subtle)] group-hover:border-[var(--accent)] overflow-hidden flex items-center justify-center mx-auto shrink-0 cursor-pointer transition-colors relative active:scale-95"
-                            title="Bấm để xem ảnh phóng to (phím mũi tên để chuyển ảnh)"
+                            className="w-10 h-10 rounded-[5px] bg-[var(--bg-card-inset)] border border-[var(--border-subtle)] group-hover:border-[var(--accent)] overflow-hidden flex items-center justify-center mx-auto shrink-0 cursor-pointer transition-colors relative active:scale-95"
+                            title="Bấm để xem ảnh phóng to"
                           >
                             {canRenderDirectThumb ? (
                               <img
@@ -650,22 +910,22 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
                               />
                             ) : isRaw ? (
                               <div className="flex flex-col items-center justify-center text-[var(--accent-strong)]">
-                                <Camera className="w-4 h-4 stroke-[1.75]" />
+                                <Camera className="w-4 h-4" strokeWidth={1.75} />
                                 <span className="text-[8px] font-bold leading-none mt-0.5">
                                   RAW
                                 </span>
                               </div>
                             ) : (
-                              <FileImage className="w-5 h-5 text-[var(--accent)] stroke-[1.5]" />
+                              <FileImage className="w-5 h-5 text-[var(--text-dim)]" strokeWidth={1.5} />
                             )}
                             <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity duration-150 flex items-center justify-center">
-                              <Eye className="w-4 h-4 text-amber-300" />
+                              <Eye className="w-4 h-4 text-amber-300" strokeWidth={1.75} />
                             </div>
                           </button>
                         </td>
 
                         {/* File Name */}
-                        <td className="p-2.5 font-semibold text-[var(--text-main)] align-middle">
+                        <td className="py-2.5 px-3 font-semibold text-[var(--text-main)] align-middle">
                           <button
                             type="button"
                             onClick={() => {
@@ -680,7 +940,7 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
                         </td>
 
                         {/* Format Badge */}
-                        <td className="p-2.5 align-middle">
+                        <td className="py-2.5 px-3 align-middle">
                           <span
                             className={`badge-pro ${
                               isRaw ? 'badge-amber' : 'badge-neutral'
@@ -691,12 +951,12 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
                         </td>
 
                         {/* File Size */}
-                        <td className="p-2.5 text-right text-[var(--text-muted)] align-middle whitespace-nowrap">
+                        <td className="py-2.5 px-3 text-right text-[var(--text-muted)] tabular-nums align-middle whitespace-nowrap">
                           {formatFileSize(fileSize)}
                         </td>
 
                         {/* Date */}
-                        <td className="p-2.5 text-[var(--text-dim)] text-[11px] align-middle whitespace-nowrap">
+                        <td className="py-2.5 px-3 text-[var(--text-dim)] text-[11px] tabular-nums align-middle whitespace-nowrap">
                           {file.dateTaken ||
                             (file.mtime
                               ? new Date(file.mtime).toLocaleDateString('vi-VN')
@@ -705,7 +965,7 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
 
                         {/* Source Path */}
                         <td
-                          className="p-2.5 text-[var(--text-dim)] truncate max-w-[220px] text-[11px] align-middle hidden xl:table-cell"
+                          className="py-2.5 px-3 text-[var(--text-dim)] truncate max-w-[220px] text-[11px] align-middle hidden xl:table-cell"
                           title={filePath}
                         >
                           {filePath}
@@ -718,29 +978,29 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
             )}
           </div>
 
-          {/* Pagination Bar */}
+          {/* Hairline Pagination Footer */}
           {filteredAndSortedMatches.length > 0 && (
-            <div className="p-2.5 bg-[var(--bg-panel)] border-t border-[var(--border-subtle)] flex flex-wrap items-center justify-between gap-3 text-xs font-mono shrink-0">
+            <div className="px-4 sm:px-5 py-2.5 bg-[var(--bg-canvas)] border-t border-[var(--border-hairline)] flex flex-wrap items-center justify-between gap-3 text-xs font-mono tabular-nums shrink-0">
               <div className="flex items-center gap-3 text-[var(--text-muted)]">
                 <span>
-                  Trang <strong className="text-[var(--accent-strong)]">{currentPage}</strong> /{' '}
+                  Trang <strong className="text-[var(--text-main)]">{currentPage}</strong> /{' '}
                   {totalPages}
                 </span>
 
-                <div className="flex items-center gap-1.5 text-[var(--text-dim)] pl-2 border-l border-[var(--border-subtle)]">
-                  <span>Hiển thị</span>
+                <div className="flex items-center gap-1.5 text-[var(--text-dim)] pl-3 border-l border-[var(--border-hairline)]">
                   <select
                     value={pageSize}
                     onChange={(e) => {
                       setPageSize(Number(e.target.value));
                       setCurrentPage(1);
                     }}
-                    className="bg-[var(--bg-card-inset)] border border-[var(--border-subtle)] text-[var(--text-main)] rounded px-1.5 py-0.5 text-xs focus:outline-none focus:border-[var(--accent)] cursor-pointer"
+                    aria-label="Số dòng mỗi trang"
+                    className="bg-[var(--bg-card-inset)] border border-[var(--border-subtle)] text-[var(--text-main)] rounded-[5px] px-2 py-0.5 text-xs focus:outline-none focus:border-[var(--accent)] cursor-pointer"
                   >
-                    <option value={50}>50 dòng/trang</option>
-                    <option value={100}>100 dòng/trang</option>
-                    <option value={250}>250 dòng/trang</option>
-                    <option value={500}>500 dòng/trang</option>
+                    <option value={50}>50 / trang</option>
+                    <option value={100}>100 / trang</option>
+                    <option value={250}>250 / trang</option>
+                    <option value={500}>500 / trang</option>
                   </select>
                 </div>
               </div>
@@ -753,21 +1013,20 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
                   className="btn-secondary-pro px-2 py-1 text-xs"
                   title="Trang đầu"
                 >
-                  <ChevronsLeft className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Đầu</span>
+                  <ChevronsLeft className="w-3.5 h-3.5" strokeWidth={1.75} />
                 </button>
                 <button
                   type="button"
                   onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
                   disabled={currentPage === 1}
-                  className="btn-secondary-pro px-2 py-1 text-xs"
+                  className="btn-secondary-pro px-2.5 py-1 text-xs"
                   title="Trang trước"
                 >
-                  <ChevronLeft className="w-3.5 h-3.5" />
+                  <ChevronLeft className="w-3.5 h-3.5" strokeWidth={1.75} />
                   <span>Trước</span>
                 </button>
 
-                <span className="px-3 py-1 bg-[var(--bg-card-inset)] border border-[var(--border-subtle)] rounded text-[var(--accent-strong)] font-bold">
+                <span className="px-2.5 py-1 text-[var(--text-main)] font-semibold">
                   {currentPage}
                 </span>
 
@@ -777,11 +1036,11 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
                     setCurrentPage((prev) => Math.min(totalPages, prev + 1))
                   }
                   disabled={currentPage === totalPages}
-                  className="btn-secondary-pro px-2 py-1 text-xs"
+                  className="btn-secondary-pro px-2.5 py-1 text-xs"
                   title="Trang sau"
                 >
                   <span>Sau</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
+                  <ChevronRight className="w-3.5 h-3.5" strokeWidth={1.75} />
                 </button>
                 <button
                   type="button"
@@ -790,8 +1049,7 @@ export const PreviewTable: React.FC<PreviewTableProps> = ({
                   className="btn-secondary-pro px-2 py-1 text-xs"
                   title="Trang cuối"
                 >
-                  <span className="hidden sm:inline">Cuối</span>
-                  <ChevronsRight className="w-3.5 h-3.5" />
+                  <ChevronsRight className="w-3.5 h-3.5" strokeWidth={1.75} />
                 </button>
               </div>
             </div>

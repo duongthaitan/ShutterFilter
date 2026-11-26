@@ -1,84 +1,109 @@
 @import "tailwindcss";
 
+/*
+ * ShutterFilter Studio Design System
+ * Language: Precision Photography Workstation (Warm Obsidian Dark / Gallery Alabaster Light)
+ * Single Accent Lock: Studio Amber (#f59e0b dark / #b45309 light)
+ * Shape Lock: 6px controls/inputs, 8px modals/tiles, 4px compact data chips
+ */
+
 :root {
+  /* Warm Obsidian Neutral Scale (no pure #000000) */
   --bg-main: #0c0c0e;
-  --bg-panel: #121216;
-  --bg-card: #17171c;
-  --bg-card-inset: #0e0e12;
-  --bg-card-hover: #1e1e25;
-  --border-subtle: #26262d;
-  --border-focus: #40404a;
+  --bg-chrome: rgba(15, 15, 18, 0.92);
+  --bg-rail: #111114;
+  --bg-canvas: #0c0c0e;
+  --bg-panel: #131317;
+  --bg-card: #16161b;
+  --bg-card-inset: #101014;
+  --bg-card-hover: #1d1d24;
 
-  --text-main: #f4f4f6;
-  --text-muted: #a1a1aa;
-  --text-dim: #71717a;
+  --border-hairline: #1f1f26;
+  --border-subtle: #272730;
+  --border-focus: #42424f;
 
+  --text-main: #f3f3f5;
+  --text-secondary: #d4d4dc;
+  --text-muted: #9898a6;
+  --text-dim: #636370;
+
+  /* Single Locked Accent: Studio Amber */
   --accent: #f59e0b;
   --accent-strong: #fbbf24;
   --accent-hover: #d97706;
-  --accent-text: #111114;
-  --accent-bg-alpha: rgba(245, 158, 11, 0.14);
-  --accent-border-alpha: rgba(245, 158, 11, 0.42);
+  --accent-text: #12100c;
+  --accent-bg-alpha: rgba(245, 158, 11, 0.12);
+  --accent-border-alpha: rgba(245, 158, 11, 0.36);
 
+  /* Semantic Status Tokens */
   --status-success: #34d399;
-  --status-success-bg: rgba(16, 185, 129, 0.14);
-  --status-success-border: rgba(16, 185, 129, 0.34);
+  --status-success-bg: rgba(16, 185, 129, 0.11);
+  --status-success-border: rgba(16, 185, 129, 0.3);
   --status-danger: #fb7185;
-  --status-danger-bg: rgba(244, 63, 94, 0.14);
-  --status-danger-border: rgba(244, 63, 94, 0.34);
+  --status-danger-bg: rgba(244, 63, 94, 0.11);
+  --status-danger-border: rgba(244, 63, 94, 0.32);
   --status-warning: #fbbf24;
-  --status-warning-bg: rgba(245, 158, 11, 0.14);
-  --status-warning-border: rgba(245, 158, 11, 0.38);
+  --status-warning-bg: rgba(245, 158, 11, 0.11);
+  --status-warning-border: rgba(245, 158, 11, 0.34);
 
-  --table-header-bg: #121216;
-  --table-row-hover: #18181f;
-  --table-divide: #1f1f27;
+  --table-header-bg: #111115;
+  --table-row-hover: #16161c;
+  --table-divide: #1b1b22;
 
-  --shadow-panel: 0 1px 2px rgba(0, 0, 0, 0.32);
-  --shadow-modal: 0 24px 60px rgba(0, 0, 0, 0.55);
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.28);
+  --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.38);
+  --shadow-modal: 0 28px 70px rgba(0, 0, 0, 0.62);
 
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
 }
 
-/* Professional Studio Light Theme - WCAG AA calibrated */
+/* Gallery Alabaster Light Theme - WCAG AA calibrated (no pure #ffffff glare) */
 html.theme-light,
 body.theme-light {
-  --bg-main: #eef0f4;
-  --bg-panel: #fafafa;
-  --bg-card: #ffffff;
-  --bg-card-inset: #f2f4f7;
-  --bg-card-hover: #e7eaf0;
-  --border-subtle: #dcdfe6;
-  --border-focus: #9ca3af;
+  --bg-main: #f6f6f7;
+  --bg-chrome: rgba(250, 250, 251, 0.94);
+  --bg-rail: #f7f7f8;
+  --bg-canvas: #fcfcfd;
+  --bg-panel: #fafafb;
+  --bg-card: #fcfcfd;
+  --bg-card-inset: #f0f1f4;
+  --bg-card-hover: #e8eaef;
 
-  --text-main: #111318;
-  --text-muted: #4b5563;
-  --text-dim: #6b7280;
+  --border-hairline: #e7e8ec;
+  --border-subtle: #dcdee4;
+  --border-focus: #a3a7b4;
 
+  --text-main: #14151a;
+  --text-secondary: #2e313b;
+  --text-muted: #5b606e;
+  --text-dim: #7b8090;
+
+  /* Calibrated Deep Studio Amber (5.4:1 contrast on alabaster) */
   --accent: #b45309;
   --accent-strong: #92400e;
   --accent-hover: #92400e;
-  --accent-text: #fafafa;
-  --accent-bg-alpha: rgba(180, 83, 9, 0.1);
-  --accent-border-alpha: rgba(180, 83, 9, 0.38);
+  --accent-text: #fcfcfd;
+  --accent-bg-alpha: rgba(180, 83, 9, 0.09);
+  --accent-border-alpha: rgba(180, 83, 9, 0.34);
 
   --status-success: #047857;
-  --status-success-bg: rgba(4, 120, 87, 0.1);
-  --status-success-border: rgba(4, 120, 87, 0.3);
+  --status-success-bg: rgba(4, 120, 87, 0.08);
+  --status-success-border: rgba(4, 120, 87, 0.28);
   --status-danger: #be123c;
-  --status-danger-bg: rgba(190, 18, 60, 0.09);
-  --status-danger-border: rgba(190, 18, 60, 0.3);
+  --status-danger-bg: rgba(190, 18, 60, 0.08);
+  --status-danger-border: rgba(190, 18, 60, 0.28);
   --status-warning: #b45309;
-  --status-warning-bg: rgba(180, 83, 9, 0.1);
-  --status-warning-border: rgba(180, 83, 9, 0.35);
+  --status-warning-bg: rgba(180, 83, 9, 0.08);
+  --status-warning-border: rgba(180, 83, 9, 0.32);
 
-  --table-header-bg: #f3f4f6;
-  --table-row-hover: #eef1f6;
-  --table-divide: #e5e7eb;
+  --table-header-bg: #f6f7f9;
+  --table-row-hover: #f2f3f6;
+  --table-divide: #eceef2;
 
-  --shadow-panel: 0 1px 3px rgba(17, 19, 24, 0.06);
-  --shadow-modal: 0 24px 60px rgba(17, 19, 24, 0.18);
+  --shadow-subtle: 0 1px 2px rgba(20, 21, 26, 0.05);
+  --shadow-elevated: 0 8px 24px rgba(20, 21, 26, 0.08);
+  --shadow-modal: 0 28px 70px rgba(20, 21, 26, 0.18);
 }
 
 body {
@@ -87,10 +112,15 @@ body {
   background-color: var(--bg-main);
   color: var(--text-main);
   font-family: 'Segoe UI Variable', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, system-ui, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   -webkit-font-smoothing: antialiased;
   user-select: none;
   overflow: hidden;
   transition: background-color 0.2s var(--ease-smooth), color 0.2s var(--ease-smooth);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }
 
 input,
@@ -108,7 +138,7 @@ select:focus-visible {
   outline-offset: 1px;
 }
 
-/* Custom Minimalist Studio Scrollbar */
+/* Hairline Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -118,14 +148,14 @@ select:focus-visible {
 }
 ::-webkit-scrollbar-thumb {
   background: var(--border-subtle);
-  border-radius: 3px;
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--border-focus);
 }
 
-/* Keyframe Animations - end with transform: none to avoid trapping fixed-position modals */
-@keyframes fadeInScale {
+/* Animations - end with transform: none so fixed overlays are never trapped */
+@keyframes fadeInSoft {
   from {
     opacity: 0;
     transform: translateY(4px);
@@ -139,7 +169,7 @@ select:focus-visible {
 @keyframes modalPop {
   0% {
     opacity: 0;
-    transform: scale3d(0.96, 0.96, 1) translateY(6px);
+    transform: scale3d(0.965, 0.965, 1) translateY(6px);
   }
   100% {
     opacity: 1;
@@ -157,7 +187,7 @@ select:focus-visible {
 }
 
 .animate-fade-in {
-  animation: fadeInScale 0.18s var(--ease-smooth) forwards;
+  animation: fadeInSoft 0.2s var(--ease-smooth) forwards;
 }
 
 .animate-modal-pop {
@@ -173,23 +203,22 @@ select:focus-visible {
   );
   background-size: 200% 100%;
   animation: shimmer 1.4s ease-in-out infinite;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
-/* Pro Panel & Card styling */
+/* Surfaces: Elevated modals & standalone views only (main workspace uses hairlines) */
 .panel-pro {
   background-color: var(--bg-panel);
   border: 1px solid var(--border-subtle);
-  border-radius: 6px;
+  border-radius: 8px;
   color: var(--text-main);
-  box-shadow: var(--shadow-panel);
-  transition: background-color 0.2s var(--ease-smooth), border-color 0.2s var(--ease-smooth);
+  box-shadow: var(--shadow-subtle);
 }
 
 .card-pro {
   background-color: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
+  border: 1px solid var(--border-hairline);
+  border-radius: 8px;
   color: var(--text-main);
   transition: border-color 0.16s var(--ease-smooth), background-color 0.16s var(--ease-smooth), transform 0.16s var(--ease-smooth);
 }
@@ -198,30 +227,34 @@ select:focus-visible {
   border-color: var(--border-focus);
 }
 
-/* Pro Input Controls - Theme Adaptive */
+/* Tactile Form Inputs (6px locked radius) */
 .input-pro {
   width: 100%;
   background-color: var(--bg-card-inset);
   border: 1px solid var(--border-subtle);
-  border-radius: 4px;
-  padding: 0.45rem 0.7rem;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
   font-size: 0.8125rem;
   color: var(--text-main);
   outline: none;
   transition: border-color 0.16s var(--ease-smooth), background-color 0.16s var(--ease-smooth), box-shadow 0.16s var(--ease-smooth);
 }
 
+.input-pro:hover:not(:focus) {
+  border-color: var(--border-focus);
+}
+
 .input-pro:focus {
   border-color: var(--accent);
   background-color: var(--bg-card);
-  box-shadow: 0 0 0 2px var(--accent-bg-alpha);
+  box-shadow: 0 0 0 3px var(--accent-bg-alpha);
 }
 
 .input-pro::placeholder {
   color: var(--text-dim);
 }
 
-/* Pro Buttons - Solid Color Fills, Tactile Press Feedback */
+/* Primary Action CTA - Singular Accent Lock */
 .btn-accent {
   display: inline-flex;
   align-items: center;
@@ -231,17 +264,19 @@ select:focus-visible {
   color: var(--accent-text);
   font-weight: 600;
   font-size: 0.8125rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 4px;
+  letter-spacing: -0.005em;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
   border: 1px solid transparent;
   cursor: pointer;
   white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 1px 2px rgba(0, 0, 0, 0.16);
   transition: background-color 0.15s var(--ease-smooth), transform 0.1s var(--ease-smooth), box-shadow 0.15s var(--ease-smooth), opacity 0.15s var(--ease-smooth);
 }
 
 .btn-accent:hover:not(:disabled) {
   background-color: var(--accent-hover);
-  box-shadow: 0 2px 8px var(--accent-bg-alpha);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 4px 12px var(--accent-bg-alpha);
 }
 
 .btn-accent:active:not(:disabled) {
@@ -249,21 +284,23 @@ select:focus-visible {
 }
 
 .btn-accent:disabled {
-  opacity: 0.45;
+  opacity: 0.42;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
+/* Secondary Quiet Action Button */
 .btn-secondary-pro {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  background-color: var(--bg-card-inset);
+  background-color: var(--bg-card);
   color: var(--text-main);
   font-weight: 500;
   font-size: 0.8125rem;
-  padding: 0.4rem 0.75rem;
-  border-radius: 4px;
+  padding: 0.42rem 0.78rem;
+  border-radius: 6px;
   border: 1px solid var(--border-subtle);
   cursor: pointer;
   white-space: nowrap;
@@ -284,23 +321,55 @@ select:focus-visible {
   cursor: not-allowed;
 }
 
-/* Segmented Control Switcher */
+/* Ghost Icon/Text Button */
+.btn-ghost-pro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  background-color: transparent;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.14s var(--ease-smooth), color 0.14s var(--ease-smooth), transform 0.1s var(--ease-smooth);
+}
+
+.btn-ghost-pro:hover:not(:disabled) {
+  background-color: var(--bg-card-hover);
+  color: var(--text-main);
+}
+
+.btn-ghost-pro:active:not(:disabled) {
+  transform: scale3d(0.97, 0.97, 1);
+}
+
+.btn-ghost-pro:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Top Navigation Segmented Switcher */
 .segmented-control {
   display: inline-flex;
   align-items: center;
   gap: 2px;
   background-color: var(--bg-card-inset);
   padding: 3px;
-  border-radius: 6px;
-  border: 1px solid var(--border-subtle);
+  border-radius: 7px;
+  border: 1px solid var(--border-hairline);
 }
 
 .segmented-item {
-  padding: 0.3rem 0.7rem;
-  font-size: 0.75rem;
+  padding: 0.32rem 0.78rem;
+  font-size: 0.78rem;
   font-weight: 500;
   color: var(--text-muted);
-  border-radius: 4px;
+  border-radius: 5px;
   border: 1px solid transparent;
   cursor: pointer;
   white-space: nowrap;
@@ -319,11 +388,11 @@ select:focus-visible {
   background-color: var(--bg-card);
   color: var(--text-main);
   font-weight: 600;
-  border-color: var(--border-focus);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  border-color: var(--border-subtle);
+  box-shadow: var(--shadow-subtle);
 }
 
-/* Badges */
+/* Precision Data Badges (4px locked radius) */
 .badge-pro {
   display: inline-flex;
   align-items: center;
@@ -332,8 +401,8 @@ select:focus-visible {
   border-radius: 4px;
   font-size: 0.6875rem;
   font-weight: 600;
-  font-family: 'Geist Mono', 'Cascadia Code', Consolas, monospace;
-  letter-spacing: 0.02em;
+  font-family: 'Cascadia Code', 'JetBrains Mono', Consolas, ui-monospace, monospace;
+  letter-spacing: 0.015em;
   white-space: nowrap;
 }
 
@@ -364,7 +433,142 @@ select:focus-visible {
 .dropzone-active {
   border-color: var(--accent) !important;
   background-color: var(--accent-bg-alpha) !important;
-  box-shadow: 0 0 0 2px var(--accent-bg-alpha);
+  box-shadow: 0 0 0 3px var(--accent-bg-alpha);
+}
+
+/* Studio Startup Splash Animations (GPU transform + opacity only) */
+@keyframes splashFrameFocus {
+  0% {
+    opacity: 0;
+    transform: scale3d(1.08, 1.08, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes splashDialSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes splashCorePop {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.7, 0.7, 1) rotate(-14deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale3d(1.05, 1.05, 1) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1) rotate(0deg);
+  }
+}
+
+@keyframes splashGlint {
+  0% {
+    transform: translate3d(0%, 0, 0) skewX(-22deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate3d(260%, 0, 0) skewX(-22deg);
+    opacity: 0;
+  }
+}
+
+@keyframes splashTextRise {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes splashProgressSweep {
+  0% {
+    transform: scaleX(0.06);
+  }
+  45% {
+    transform: scaleX(0.58);
+  }
+  82% {
+    transform: scaleX(0.92);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.splash-backdrop {
+  opacity: 1;
+  transition: opacity 0.34s var(--ease-smooth), transform 0.34s var(--ease-smooth);
+}
+
+.splash-backdrop.splash-exit {
+  opacity: 0;
+  transform: scale3d(1.03, 1.03, 1);
+  pointer-events: none;
+}
+
+.splash-frame {
+  animation: splashFrameFocus 0.46s var(--ease-smooth) forwards;
+}
+
+.splash-dial-spin {
+  animation: splashDialSpin 4.4s linear infinite;
+}
+
+.splash-shutter-blades {
+  transform: scale3d(0.92, 0.92, 1) rotate(-22deg);
+  transition: transform 0.45s var(--ease-spring), opacity 0.35s var(--ease-smooth);
+}
+
+.splash-shutter-blades.splash-blades-open {
+  transform: scale3d(1.12, 1.12, 1) rotate(18deg);
+  opacity: 0.95;
+}
+
+.splash-core-pop {
+  animation: splashCorePop 0.5s var(--ease-spring) forwards;
+}
+
+.splash-glint {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.52),
+    transparent
+  );
+  animation: splashGlint 0.72s var(--ease-smooth) 0.36s forwards;
+}
+
+.splash-text-rise {
+  animation: splashTextRise 0.4s var(--ease-smooth) 0.14s both;
+}
+
+.splash-progress-fill {
+  animation: splashProgressSweep 0.96s var(--ease-smooth) forwards;
+  transition: background-color 0.2s var(--ease-smooth);
+}
+
+/* Instant 1-frame theme switch without mismatched text/background transition lag */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
 }
 
 /* Reduced Motion Guardrail */

@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/duongthaitan/ShutterFilter/releases"><img src="https://img.shields.io/badge/phiên_bản-1.1.0-f59e0b?style=flat-square" alt="Version" /></a>
+  <a href="https://github.com/duongthaitan/ShutterFilter/releases"><img src="https://img.shields.io/badge/phiên_bản-1.2.0-f59e0b?style=flat-square" alt="Version" /></a>
   <img src="https://img.shields.io/badge/electron-33-47848f?style=flat-square&logo=electron&logoColor=white" alt="Electron" />
   <img src="https://img.shields.io/badge/react-18-61dafb?style=flat-square&logo=react&logoColor=white" alt="React" />
   <img src="https://img.shields.io/badge/tailwind-v4-38bdf8?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind" />
@@ -113,7 +113,8 @@ Kết quả khớp hiển thị trực tiếp ngay khi dán danh sách, trước
 |:---|:---|
 | **Đọc & Xem trước ảnh RAW trực tiếp** | Giải mã & trích xuất ảnh xem trước độ phân giải cao cho 13 định dạng RAW máy ảnh (`.cr2`, `.cr3`, `.arw`, `.nef`, `.dng`, `.raf`, `.orf`, `.rw2`, `.pef`, `.srw`, `.x3f`, `.erf`, `.mrw`) |
 | **Thuật toán Chọn Preview Max Area** | Tự động quét phân đoạn nhị phân JPEG chuẩn ISO/IEC 10918-1 (hỗ trợ cả JPEG Progressive), chọn bản preview có diện tích pixel lớn nhất (5760x3840, 1616x1080) thay vì thumbnail EXIF 160x120 |
-| **Khung xem ảnh Studio Lightbox** | Hiển thị toàn màn hình nền tối `#111114`, hỗ trợ phím tắt `←` / `→` chuyển ảnh, `Space` phóng to/thu nhỏ, `Esc` đóng và mở nhanh vị trí file trong Explorer |
+| **Khung xem ảnh Studio Lightbox & Lưới Contact Sheet** | Hỗ trợ chuyển nhanh chế độ **Danh sách** ↔ **Lưới ảnh Contact Sheet 4:3**; Lightbox toàn màn hình hỗ trợ `←` / `→` chuyển ảnh, `Space` phóng to/thu nhỏ, `Esc` đóng và mở nhanh vị trí file |
+| **Hiệu ứng mở app Studio Shutter** | Màn hình khởi động khung ngắm lấy nét 4 góc & vòng khẩu độ 6 lá 60fps, đồng bộ từ lúc giải nén `.exe` di động đến giao diện chính (click/phím để vào nhanh) |
 | **Đối chiếu thông minh & Cảnh báo thiếu** | Hỗ trợ chế độ khớp `Chứa` / `Bắt đầu` / `Chính xác`, nút **Chuẩn hóa** danh sách (tách dấu phẩy, bỏ đuôi file, lọc trùng), chọn/bỏ từng ảnh và cảnh báo + sao chép danh sách tên ảnh chưa tìm thấy |
 | **Kéo thả thư mục & Quét siêu tốc** | Kéo thả thư mục trực tiếp vào ô Nguồn/Đích, tạo nhanh `/Da_Loc`, tự động loại trừ thư mục đích nằm trong nguồn, quét song song có cache EXIF |
 | **Tùy chọn nâng cao & Bộ lọc mẫu (Presets)** | Tùy chọn xử lý trùng tên (`Đổi tên` / `Bỏ qua` / `Ghi đè`), chia thư mục con (`Định dạng` / `Ngày chụp` / `Từ khóa`), di chuyển an toàn khác ổ đĩa (`EXDEV`) và lưu/áp dụng nhanh các Bộ Lọc Mẫu |

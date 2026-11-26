@@ -127,31 +127,31 @@ export const HistoryView: React.FC<HistoryViewProps> = ({
   }, [selectedRun, detailStatusFilter]);
 
   return (
-    <div className="panel-pro p-5 space-y-4 animate-fade-in">
+    <div className="space-y-6 animate-fade-in">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[var(--border-subtle)]">
-        <div className="flex items-center gap-2.5">
-          <History className="w-5 h-5 text-[var(--accent)]" />
-          <div>
-            <h2 className="text-sm font-bold text-[var(--text-main)]">
-              Lịch Sử Các Lần Lọc (Run Log)
-            </h2>
-            <p className="text-xs text-[var(--text-muted)]">
-              Tra cứu chi tiết và hoàn tác (Undo) các đợt lọc ảnh đã thực thi.
-            </p>
-          </div>
+      <div className="flex flex-wrap items-end justify-between gap-4 pb-4 border-b border-[var(--border-hairline)]">
+        <div className="space-y-1">
+          <h2 className="text-lg font-semibold tracking-[-0.02em] text-[var(--text-main)]">
+            Lịch sử &amp; Hoàn tác
+          </h2>
+          <p className="text-xs text-[var(--text-muted)]">
+            Tra cứu nhật ký các đợt lọc ảnh đã thực thi và khôi phục về vị trí ban đầu khi cần.
+          </p>
         </div>
 
         <div className="flex items-center gap-2">
           <div className="relative flex items-center">
-            <Search className="w-3.5 h-3.5 absolute left-2.5 text-[var(--text-dim)] pointer-events-none" />
+            <Search
+              className="w-3.5 h-3.5 absolute left-2.5 text-[var(--text-dim)] pointer-events-none"
+              strokeWidth={1.75}
+            />
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Tìm mã lượt, thư mục..."
-              style={{ paddingLeft: '30px' }}
-              className="input-pro py-1.5 text-xs font-mono w-52"
+              style={{ paddingLeft: '32px' }}
+              className="input-pro py-1.5 text-xs font-mono w-64"
             />
           </div>
           <button
@@ -161,7 +161,10 @@ export const HistoryView: React.FC<HistoryViewProps> = ({
             className="btn-secondary-pro text-xs"
             title="Làm mới danh sách lịch sử"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
+            <RefreshCw
+              className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`}
+              strokeWidth={1.75}
+            />
             <span>Làm mới</span>
           </button>
         </div>

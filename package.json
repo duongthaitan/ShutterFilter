@@ -1,6 +1,6 @@
 {
   "name": "shutterfilter-photo-sorter",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "App lọc & sắp xếp ảnh theo tên file, định dạng cho Windows & macOS",
   "main": "dist-electron/main/index.js",
   "author": "Tandev",

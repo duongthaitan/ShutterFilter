@@ -38,28 +38,30 @@ export const ModeAndPolicy: React.FC<ModeAndPolicyProps> = ({
   };
 
   return (
-    <div className="panel-pro p-3.5 space-y-3 animate-fade-in">
-      <div className="flex items-center justify-between pb-2 border-b border-[var(--border-subtle)]">
+    <section className="px-4 py-3.5 space-y-3">
+      <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <Settings2 className="w-4 h-4 text-[var(--accent)]" />
-          <h3 className="text-xs font-bold uppercase tracking-wider text-[var(--text-main)]">
-            Chế độ thực thi
-          </h3>
+          <Settings2 className="w-4 h-4 text-[var(--text-muted)]" strokeWidth={1.75} />
+          <h2 className="text-[13px] font-semibold tracking-[-0.01em] text-[var(--text-main)]">
+            Phương thức xử lý
+          </h2>
         </div>
 
         <button
           type="button"
           onClick={() => setShowAdvanced((v) => !v)}
-          className="text-[11px] font-medium text-[var(--text-muted)] hover:text-[var(--text-main)] flex items-center gap-1 cursor-pointer transition-colors"
+          className="btn-ghost-pro text-[11px] px-2 py-1"
         >
-          <span>Tùy chọn nâng cao</span>
+          <span>Nâng cao</span>
           {customAdvancedCount > 0 && (
-            <span className="badge-pro badge-amber">{customAdvancedCount}</span>
+            <span className="badge-pro badge-amber tabular-nums">
+              {customAdvancedCount}
+            </span>
           )}
           {showAdvanced ? (
-            <ChevronUp className="w-3.5 h-3.5" />
+            <ChevronUp className="w-3.5 h-3.5" strokeWidth={1.75} />
           ) : (
-            <ChevronDown className="w-3.5 h-3.5" />
+            <ChevronDown className="w-3.5 h-3.5" strokeWidth={1.75} />
           )}
         </button>
       </div>
@@ -69,21 +71,28 @@ export const ModeAndPolicy: React.FC<ModeAndPolicyProps> = ({
         <button
           type="button"
           onClick={() => onChange({ mode: 'copy' })}
-          className={`p-2.5 rounded-[4px] border text-left transition-colors flex items-center gap-2.5 cursor-pointer active:scale-[0.98] ${
+          className={`p-3 rounded-[6px] border text-left transition-colors flex items-start gap-2.5 cursor-pointer active:scale-[0.98] ${
             config.mode === 'copy'
-              ? 'bg-[var(--accent-bg-alpha)] border-[var(--accent-border-alpha)] text-[var(--accent-strong)] font-semibold'
-              : 'bg-[var(--bg-card-inset)] border-[var(--border-subtle)] text-[var(--text-muted)] hover:border-[var(--border-focus)] hover:text-[var(--text-main)]'
+              ? 'bg-[var(--accent-bg-alpha)] border-[var(--accent-border-alpha)] text-[var(--text-main)]'
+              : 'bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-muted)] hover:border-[var(--border-focus)] hover:text-[var(--text-main)]'
           }`}
         >
           <Copy
-            className={`w-4 h-4 shrink-0 ${
+            className={`w-4 h-4 shrink-0 mt-0.5 ${
               config.mode === 'copy' ? 'text-[var(--accent)]' : 'text-[var(--text-dim)]'
             }`}
+            strokeWidth={1.75}
           />
           <div className="min-w-0">
-            <div className="text-xs font-bold whitespace-nowrap">Copy</div>
-            <div className="text-[10px] text-[var(--text-muted)] truncate">
-              Sao chép, giữ ảnh gốc
+            <div
+              className={`text-xs font-semibold ${
+                config.mode === 'copy' ? 'text-[var(--accent-strong)]' : ''
+              }`}
+            >
+              Sao chép
+            </div>
+            <div className="text-[11px] text-[var(--text-muted)] mt-0.5 leading-tight">
+              Giữ ảnh gốc
             </div>
           </div>
         </button>
@@ -91,23 +100,30 @@ export const ModeAndPolicy: React.FC<ModeAndPolicyProps> = ({
         <button
           type="button"
           onClick={() => onChange({ mode: 'move' })}
-          className={`p-2.5 rounded-[4px] border text-left transition-colors flex items-center gap-2.5 cursor-pointer active:scale-[0.98] ${
+          className={`p-3 rounded-[6px] border text-left transition-colors flex items-start gap-2.5 cursor-pointer active:scale-[0.98] ${
             config.mode === 'move'
-              ? 'bg-[var(--status-danger-bg)] border-[var(--status-danger-border)] text-[var(--status-danger)] font-semibold'
-              : 'bg-[var(--bg-card-inset)] border-[var(--border-subtle)] text-[var(--text-muted)] hover:border-[var(--border-focus)] hover:text-[var(--text-main)]'
+              ? 'bg-[var(--status-danger-bg)] border-[var(--status-danger-border)] text-[var(--text-main)]'
+              : 'bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-muted)] hover:border-[var(--border-focus)] hover:text-[var(--text-main)]'
           }`}
         >
           <Move
-            className={`w-4 h-4 shrink-0 ${
+            className={`w-4 h-4 shrink-0 mt-0.5 ${
               config.mode === 'move'
                 ? 'text-[var(--status-danger)]'
                 : 'text-[var(--text-dim)]'
             }`}
+            strokeWidth={1.75}
           />
           <div className="min-w-0">
-            <div className="text-xs font-bold whitespace-nowrap">Move</div>
-            <div className="text-[10px] text-[var(--text-muted)] truncate">
-              Di chuyển sang đích
+            <div
+              className={`text-xs font-semibold ${
+                config.mode === 'move' ? 'text-[var(--status-danger)]' : ''
+              }`}
+            >
+              Di chuyển
+            </div>
+            <div className="text-[11px] text-[var(--text-muted)] mt-0.5 leading-tight">
+              Chuyển sang đích
             </div>
           </div>
         </button>
@@ -115,18 +131,21 @@ export const ModeAndPolicy: React.FC<ModeAndPolicyProps> = ({
 
       {/* Collapsible Advanced Options */}
       {showAdvanced && (
-        <div className="pt-2.5 border-t border-[var(--border-subtle)] space-y-3 animate-fade-in">
-          {/* Duplicate File Policy */}
-          <div className="space-y-1">
+        <div className="pt-3 border-t border-[var(--border-hairline)] space-y-3 animate-fade-in">
+          <div className="space-y-1.5">
             <label
               htmlFor="duplicate-policy-select"
-              className="block text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wide"
+              className="block text-xs font-medium text-[var(--text-muted)]"
             >
               Khi trùng tên ở đích
             </label>
             <select
               id="duplicate-policy-select"
-              value={config.duplicate_policy === 'rename' ? 'auto_rename' : config.duplicate_policy}
+              value={
+                config.duplicate_policy === 'rename'
+                  ? 'auto_rename'
+                  : config.duplicate_policy
+              }
               onChange={(e) =>
                 handleDuplicatePolicyChange(e.target.value as DuplicatePolicy)
               }
@@ -138,20 +157,19 @@ export const ModeAndPolicy: React.FC<ModeAndPolicyProps> = ({
             </select>
             {config.duplicate_policy === 'overwrite' && (
               <div className="flex items-center gap-1.5 text-[11px] text-[var(--status-danger)] pt-0.5">
-                <ShieldAlert className="w-3.5 h-3.5 shrink-0" />
+                <ShieldAlert className="w-3.5 h-3.5 shrink-0" strokeWidth={1.75} />
                 <span>File trùng tên tại thư mục đích sẽ bị ghi đè trực tiếp.</span>
               </div>
             )}
           </div>
 
-          {/* Auto Subfolder Grouping */}
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <label
               htmlFor="auto-subfolder-select"
-              className="flex items-center gap-1.5 text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wide"
+              className="flex items-center gap-1.5 text-xs font-medium text-[var(--text-muted)]"
             >
-              <FolderTree className="w-3.5 h-3.5 text-[var(--accent)]" />
-              <span>Tự động phân thư mục con</span>
+              <FolderTree className="w-3.5 h-3.5 text-[var(--text-dim)]" strokeWidth={1.75} />
+              <span>Phân thư mục con tự động</span>
             </label>
             <select
               id="auto-subfolder-select"
@@ -168,25 +186,24 @@ export const ModeAndPolicy: React.FC<ModeAndPolicyProps> = ({
             </select>
           </div>
 
-          {/* Recursive Scan Toggle */}
-          <label className="flex items-center justify-between gap-2 pt-1 cursor-pointer">
+          <label className="flex items-center justify-between gap-3 pt-1 cursor-pointer">
             <div>
               <div className="text-xs font-medium text-[var(--text-main)]">
                 Quét cả thư mục con
               </div>
-              <div className="text-[10px] text-[var(--text-muted)]">
-                Tự động tìm ảnh trong tất cả thư mục con bên trong nguồn
+              <div className="text-[11px] text-[var(--text-muted)]">
+                Tìm ảnh sâu trong mọi thư mục con bên trong nguồn
               </div>
             </div>
             <input
               type="checkbox"
               checked={config.recursive}
               onChange={(e) => onChange({ recursive: e.target.checked })}
-              className="w-4 h-4 accent-[var(--accent)] cursor-pointer"
+              className="w-4 h-4 accent-[var(--accent)] cursor-pointer shrink-0"
             />
           </label>
         </div>
       )}
-    </div>
+    </section>
   );
 };
