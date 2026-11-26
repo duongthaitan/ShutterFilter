@@ -2,6 +2,7 @@ import { app, BrowserWindow, Menu } from 'electron';
 import path from 'path';
 import fs from 'fs';
 import { setupIpcHandlers } from './ipcHandlers';
+import { cleanupTempPreviews } from './exifReader';
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -23,7 +24,8 @@ function createWindow() {
     title: 'ShutterFilter by Tandev.foto',
     icon: iconPath,
     autoHideMenuBar: true,
-    backgroundColor: '#0a0a0c',
+    backgroundColor: '#0d0d0f',
+    show: false,
     webPreferences: {
       preload: path.join(__dirname, '../preload/preload.js'),
       nodeIntegration: false,
@@ -34,7 +36,9 @@ function createWindow() {
   // Explicitly remove menu bar
   mainWindow.removeMenu();
 
-  setupIpcHandlers();
+  mainWindow.once('ready-to-show', () => {
+    mainWindow?.show();
+  });
 
   if (process.env.VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL);
@@ -49,6 +53,7 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+  setupIpcHandlers();
   createWindow();
 
   app.on('activate', () => {
@@ -56,6 +61,10 @@ app.whenReady().then(() => {
       createWindow();
     }
   });
+});
+
+app.on('will-quit', () => {
+  cleanupTempPreviews();
 });
 
 app.on('window-all-closed', () => {

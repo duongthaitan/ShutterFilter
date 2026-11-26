@@ -12,14 +12,38 @@ export const RAW_EXTENSIONS = [
   '.raf',
   '.orf',
   '.rw2',
+  '.pef',
+  '.srw',
+  '.x3f',
+  '.erf',
+  '.mrw',
 ];
 
-export const STANDARD_EXTENSIONS = ['.jpg', '.jpeg', '.heic'];
+export const STANDARD_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.heic', '.tiff'];
 
 export const ALL_SUPPORTED_EXTENSIONS = [
   ...STANDARD_EXTENSIONS,
   ...RAW_EXTENSIONS,
 ];
+
+export interface DetectedExtension {
+  ext: string;
+  count: number;
+  isRaw: boolean;
+}
+
+export type SelectFolderOptions =
+  | string
+  | {
+      defaultPath?: string;
+      title?: string;
+    };
+
+export interface OpenPhotoshopResult {
+  success: boolean;
+  fallback?: boolean;
+  message?: string;
+}
 
 export interface FilterConfig {
   sourceFolder: string;
@@ -62,6 +86,8 @@ export interface PreviewResult {
   totalSizeBytes: number;
   total_size?: number;
   scan_duration_ms?: number;
+  unmatchedKeywords?: string[];
+  totalFolderImages?: number;
 }
 
 export interface FileMapEntry {
@@ -85,6 +111,7 @@ export interface RunLog {
   skipped_duplicate: number;
   errors: number;
   undone: boolean;
+  cancelled?: boolean;
   file_map: FileMapEntry[];
   schema_version: number;
 }
@@ -117,6 +144,8 @@ export interface RunResult {
   processed: number;
   skipped: number;
   errors: number;
+  cancelled?: boolean;
+  destination_folder?: string;
   file_map: FileMapEntry[];
   errorList: { filename: string; reason: string }[];
 }

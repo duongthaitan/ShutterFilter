@@ -1,29 +1,63 @@
-import React, { useState, useEffect } from 'react';
-import { Camera, Filter, History, Info, Sun, Moon } from 'lucide-react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import {
+  Camera,
+  Filter,
+  History,
+  Bookmark,
+  Info,
+  CheckCircle2,
+  AlertTriangle,
+  XCircle,
+  Sun,
+  Moon,
+  X,
+} from 'lucide-react';
 import {
   FilterConfig,
+  FileEntry,
   PreviewResult,
   ProgressUpdate,
   RunResult,
+  Preset,
+  DetectedExtension,
 } from '../shared/types';
 import { FolderPicker } from './components/FolderPicker';
 import { FilterCriteria } from './components/FilterCriteria';
 import { ModeAndPolicy } from './components/ModeAndPolicy';
 import { PreviewTable } from './components/PreviewTable';
 import { HistoryView } from './components/HistoryView';
+import { PresetManager } from './components/PresetManager';
 import { ExecutionModal } from './components/ExecutionModal';
 
-interface DetectedExt {
-  ext: string;
-  count: number;
-  isRaw: boolean;
+type ToastType = 'info' | 'success' | 'warning' | 'error';
+
+interface ToastState {
+  message: string;
+  type: ToastType;
+}
+
+function cleanErrorMessage(err: unknown): string {
+  const raw = err instanceof Error ? err.message : String(err || 'Lỗi không xác định');
+  return raw
+    .replace(/^Error invoking remote method '[^']+':\s*/i, '')
+    .replace(/^Error:\s*/i, '')
+    .trim();
+}
+
+function normalizePathClient(p: string): string {
+  return p.trim().replace(/[\\/]+$/, '').replace(/\\/g, '/').toLowerCase();
 }
 
 export const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'filter' | 'history'>('filter');
+  const [activeTab, setActiveTab] = useState<'filter' | 'presets' | 'history'>('filter');
+  const [activePresetName, setActivePresetName] = useState<string | undefined>(undefined);
 
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    return (localStorage.getItem('shutter_theme') as 'dark' | 'light') || 'dark';
+    try {
+      return (localStorage.getItem('shutter_theme') as 'dark' | 'light') || 'dark';
+    } catch {
+      return 'dark';
+    }
   });
 
   const [config, setConfig] = useState<FilterConfig>({
@@ -41,36 +75,65 @@ export const App: React.FC = () => {
   });
 
   const [previewResult, setPreviewResult] = useState<PreviewResult | null>(null);
-  const [isScanning, setIsScanning] = useState<boolean>(false);
+  const [scanError, setScanError] = useState<string | null>(null);
+  const [isDetectingExts, setIsDetectingExts] = useState<boolean>(false);
+  const [isPreviewLoading, setIsPreviewLoading] = useState<boolean>(false);
 
   const [showExecutionModal, setShowExecutionModal] = useState<boolean>(false);
   const [isExecuting, setIsExecuting] = useState<boolean>(false);
   const [progressUpdate, setProgressUpdate] = useState<ProgressUpdate | null>(null);
   const [runResult, setRunResult] = useState<RunResult | null>(null);
 
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [detectedExtensions, setDetectedExtensions] = useState<DetectedExt[]>([]);
+  const [toast, setToast] = useState<ToastState | null>(null);
+  const [detectedExtensions, setDetectedExtensions] = useState<DetectedExtension[]>([]);
 
-  const currentSource = config.sourceFolder || config.source_folder || '';
-  const currentDest = config.destFolder || config.destination_folder || '';
+  const toastTimerRef = useRef<number | null>(null);
+  const previewSeqRef = useRef<number>(0);
+  const detectSeqRef = useRef<number>(0);
 
-  const showToast = (msg: string) => {
-    setToastMessage(msg);
-    setTimeout(() => {
-      setToastMessage(null);
-    }, 4000);
-  };
+  const currentSource = (config.sourceFolder || config.source_folder || '').trim();
+  const currentDest = (config.destFolder || config.destination_folder || '').trim();
 
-  // Set document title & theme class
+  const hasPathConflict = useMemo(() => {
+    if (!currentSource || !currentDest) return false;
+    return normalizePathClient(currentSource) === normalizePathClient(currentDest);
+  }, [currentSource, currentDest]);
+
+  const showToast = useCallback((message: string, type: ToastType = 'info') => {
+    if (toastTimerRef.current !== null) {
+      window.clearTimeout(toastTimerRef.current);
+    }
+    setToast({ message, type });
+    toastTimerRef.current = window.setTimeout(() => {
+      setToast(null);
+      toastTimerRef.current = null;
+    }, 4200);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (toastTimerRef.current !== null) {
+        window.clearTimeout(toastTimerRef.current);
+      }
+    };
+  }, []);
+
+  // Document title & Theme class sync (both html and body to eliminate FOUC)
   useEffect(() => {
     document.title = 'ShutterFilter by Tandev.foto';
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('shutter_theme', theme);
+    try {
+      localStorage.setItem('shutter_theme', theme);
+    } catch {
+      // Ignore storage errors
+    }
     if (theme === 'light') {
+      document.documentElement.classList.add('theme-light');
       document.body.classList.add('theme-light');
     } else {
+      document.documentElement.classList.remove('theme-light');
       document.body.classList.remove('theme-light');
     }
   }, [theme]);
@@ -91,129 +154,165 @@ export const App: React.FC = () => {
     }
   }, []);
 
-  // Real-time auto preview & auto detect extensions whenever config changes
-  useEffect(() => {
-    if (!currentSource) {
+  // Race-condition-safe preview scan
+  const runAutoPreview = useCallback(async (currentConfig: FilterConfig) => {
+    const rawSource = (
+      currentConfig.sourceFolder ||
+      currentConfig.source_folder ||
+      ''
+    ).trim();
+    if (!rawSource) {
       setPreviewResult(null);
-      setDetectedExtensions([]);
+      setScanError(null);
+      setIsPreviewLoading(false);
       return;
     }
 
-    const timer = setTimeout(() => {
+    const requestId = ++previewSeqRef.current;
+    setIsPreviewLoading(true);
+    setScanError(null);
+
+    try {
+      const result = await window.electronAPI.previewFilter(currentConfig);
+      if (requestId !== previewSeqRef.current) return;
+      setPreviewResult(result);
+    } catch (err) {
+      if (requestId !== previewSeqRef.current) return;
+      setPreviewResult(null);
+      setScanError(cleanErrorMessage(err));
+    } finally {
+      if (requestId === previewSeqRef.current) {
+        setIsPreviewLoading(false);
+      }
+    }
+  }, []);
+
+  // Race-condition-safe extension detection
+  const autoDetectExtensions = useCallback(
+    async (
+      sourceFolder: string,
+      recursive: boolean,
+      destFolder?: string,
+      silent: boolean = false
+    ) => {
+      const trimmed = sourceFolder.trim();
+      if (!trimmed) {
+        setDetectedExtensions([]);
+        return;
+      }
+
+      const detectId = ++detectSeqRef.current;
+      setIsDetectingExts(true);
+      try {
+        const detectedList = window.electronAPI?.detectExtensions
+          ? await window.electronAPI.detectExtensions(trimmed, recursive, destFolder)
+          : [];
+
+        if (detectId !== detectSeqRef.current) return;
+        setDetectedExtensions(detectedList);
+
+        if (!silent) {
+          if (detectedList.length > 0) {
+            const totalCount = detectedList.reduce((acc, item) => acc + item.count, 0);
+            showToast(
+              `Nhận diện ${totalCount.toLocaleString('vi-VN')} ảnh thuộc ${detectedList.length} định dạng trong thư mục nguồn.`,
+              'success'
+            );
+          } else {
+            showToast('Thư mục nguồn không chứa định dạng ảnh hợp lệ.', 'warning');
+          }
+        }
+      } catch (err) {
+        if (detectId !== detectSeqRef.current) return;
+        console.error('Failed to auto detect extensions:', err);
+      } finally {
+        if (detectId === detectSeqRef.current) {
+          setIsDetectingExts(false);
+        }
+      }
+    },
+    [showToast]
+  );
+
+  // Real-time debounced auto-preview whenever filter criteria change
+  useEffect(() => {
+    if (!currentSource) {
+      previewSeqRef.current++;
+      setPreviewResult(null);
+      setScanError(null);
+      setDetectedExtensions([]);
+      setIsPreviewLoading(false);
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
       runAutoPreview(config);
     }, 150);
 
-    return () => clearTimeout(timer);
+    return () => window.clearTimeout(timer);
   }, [
-    config.sourceFolder,
-    config.source_folder,
+    currentSource,
+    currentDest,
     config.keywords_include,
     config.keywords_exclude,
     config.extensions,
     config.match_type,
     config.recursive,
+    runAutoPreview,
   ]);
 
-  const runAutoPreview = async (currentConfig: FilterConfig) => {
-    const rawSource = currentConfig.sourceFolder || currentConfig.source_folder || '';
-    if (!rawSource) return;
-
-    try {
-      const result = await window.electronAPI.previewFilter(currentConfig);
-      setPreviewResult(result);
-    } catch (err) {
-      console.error('Auto preview error:', err);
+  // Re-detect extensions when source folder, recursive mode, or destination folder changes
+  const prevSourceRef = useRef<string>('');
+  useEffect(() => {
+    if (!currentSource) {
+      prevSourceRef.current = '';
+      setDetectedExtensions([]);
+      return;
     }
-  };
 
-  // Config Update Handler: Always force extensions to [] when sourceFolder changes
+    const sourceChanged = prevSourceRef.current !== currentSource;
+    prevSourceRef.current = currentSource;
+
+    const timer = window.setTimeout(() => {
+      autoDetectExtensions(currentSource, config.recursive, currentDest, !sourceChanged);
+    }, sourceChanged ? 120 : 250);
+
+    return () => window.clearTimeout(timer);
+  }, [currentSource, config.recursive, currentDest, autoDetectExtensions]);
+
   const handleConfigChange = (updates: Partial<FilterConfig>) => {
     setConfig((prev) => {
       const next = { ...prev, ...updates };
-
-      const oldSource = prev.sourceFolder || prev.source_folder || '';
-      const newSource = next.sourceFolder || next.source_folder || '';
+      const oldSource = (prev.sourceFolder || prev.source_folder || '').trim();
+      const newSource = (next.sourceFolder || next.source_folder || '').trim();
 
       if (oldSource !== newSource) {
-        // Force extensions to remain UNCHECKED / OFF by default when source folder is selected
         next.extensions = [];
-        if (newSource.trim()) {
-          autoDetectExtensions(next);
-        } else {
-          setDetectedExtensions([]);
-        }
       }
       return next;
     });
   };
 
-  // Auto detect extensions in source folder (Default OFF / UNCHECKED as requested)
-  const autoDetectExtensions = async (currentConfig: FilterConfig) => {
-    const rawSource = currentConfig.sourceFolder || currentConfig.source_folder || '';
-    if (!rawSource) {
-      setDetectedExtensions([]);
-      return;
-    }
-
-    setIsScanning(true);
-    try {
-      let detectedList: DetectedExt[] = [];
-
-      if (window.electronAPI?.detectExtensions) {
-        detectedList = await window.electronAPI.detectExtensions(rawSource);
-      } else {
-        const scanConfig: FilterConfig = { ...currentConfig, extensions: [] };
-        const res = await window.electronAPI.previewFilter(scanConfig);
-        const files = res.matched_files || res.files || [];
-
-        const extMap: { [ext: string]: number } = {};
-        files.forEach((f) => {
-          const extClean = (f.extension || '').toLowerCase().replace(/^\./, '');
-          if (extClean) {
-            extMap[extClean] = (extMap[extClean] || 0) + 1;
-          }
-        });
-
-        const rawExtsClean = ['arw', 'cr2', 'cr3', 'nef', 'dng', 'raf', 'orf', 'rw2'];
-
-        detectedList = Object.keys(extMap).map((ext) => ({
-          ext,
-          count: extMap[ext],
-          isRaw: rawExtsClean.includes(ext),
-        }));
-      }
-
-      setDetectedExtensions(detectedList);
-
-      // Explicitly keep extensions UNCHECKED / OFF by default
-      setConfig((prev) => ({
-        ...prev,
-        extensions: [],
-      }));
-
-      if (detectedList.length > 0) {
-        showToast(`Tự động nhận diện ${detectedList.length} loại định dạng ảnh trong folder nguồn!`);
-      } else {
-        showToast('Thư mục nguồn không chứa định dạng ảnh hợp lệ.');
-      }
-    } catch (err) {
-      console.error('Failed to auto detect extensions:', err);
-    } finally {
-      setIsScanning(false);
-    }
+  const handleRefreshSource = () => {
+    if (!currentSource) return;
+    autoDetectExtensions(currentSource, config.recursive, currentDest, false);
+    runAutoPreview(config);
   };
 
   // Run File Filter Copy/Move Execution
-  const handleExecuteRun = async () => {
+  const handleExecuteRun = async (selectedFiles: FileEntry[]) => {
     if (!currentSource || !currentDest) {
-      showToast('Vui lòng chọn Thư mục nguồn và Thư mục đích!');
+      showToast('Vui lòng chọn Thư mục nguồn và Thư mục đích.', 'warning');
       return;
     }
 
-    const filesToRun = previewResult?.matched_files || previewResult?.files || [];
+    if (hasPathConflict) {
+      showToast('Thư mục nguồn và thư mục đích không được trùng nhau.', 'error');
+      return;
+    }
 
-    if (filesToRun.length === 0) {
-      showToast('Không tìm thấy ảnh nào phù hợp với từ khoá và định dạng đã chọn!');
+    if (!selectedFiles || selectedFiles.length === 0) {
+      showToast('Chưa có ảnh nào được chọn để thực thi lọc.', 'warning');
       return;
     }
 
@@ -222,21 +321,53 @@ export const App: React.FC = () => {
     setProgressUpdate({
       runId: `run-${Date.now()}`,
       processedCount: 0,
-      totalCount: filesToRun.length,
+      totalCount: selectedFiles.length,
       currentFilename: 'Đang khởi tạo...',
       status: 'processing',
     });
     setRunResult(null);
 
     try {
-      const result = await window.electronAPI.executeFilter(config, filesToRun);
-      setRunResult(result);
-      showToast(
-        `Hoàn tất! Đã xử lý ${result.processed} file (${result.skipped} bỏ qua, ${result.errors} lỗi).`
+      const result = await window.electronAPI.executeFilter(
+        config,
+        selectedFiles,
+        activePresetName
       );
+      setRunResult(result);
+
+      if (result.cancelled) {
+        showToast(
+          `Đã hủy tiến trình. Đã xử lý ${result.processed} file trước khi dừng.`,
+          'warning'
+        );
+      } else if (result.errors > 0) {
+        showToast(
+          `Hoàn tất: ${result.processed} thành công, ${result.skipped} bỏ qua, ${result.errors} lỗi.`,
+          'warning'
+        );
+      } else {
+        showToast(
+          `Hoàn tất! Đã xử lý ${result.processed} file (${result.skipped} bỏ qua).`,
+          'success'
+        );
+      }
+
+      // Refresh preview & extensions after move or any execution so table reflects disk reality
+      if (config.mode === 'move') {
+        autoDetectExtensions(currentSource, config.recursive, currentDest, true);
+        runAutoPreview(config);
+      }
     } catch (err) {
-      console.error('Execution error:', err);
-      showToast('Có lỗi xảy ra trong quá trình lọc!');
+      const errMsg = cleanErrorMessage(err);
+      setProgressUpdate({
+        runId: `run-err-${Date.now()}`,
+        processedCount: 0,
+        totalCount: selectedFiles.length,
+        currentFilename: '',
+        status: 'error',
+        errorMsg: errMsg,
+      });
+      showToast(errMsg, 'error');
     } finally {
       setIsExecuting(false);
     }
@@ -245,116 +376,203 @@ export const App: React.FC = () => {
   const handleCancelExecution = async () => {
     try {
       await window.electronAPI.cancelRun();
-      showToast('Đã gửi yêu cầu hủy tiến trình.');
+      showToast('Đang dừng tiến trình lọc...', 'warning');
     } catch (err) {
       console.error('Cancel error:', err);
     }
   };
 
+  const handleApplyPreset = (preset: Preset) => {
+    setActivePresetName(preset.name);
+    setConfig((prev) => ({
+      ...prev,
+      keywords_include: [...preset.keywords_include],
+      keywords_exclude: [...preset.keywords_exclude],
+      match_type: preset.match_type || 'contains',
+      extensions: [...preset.extensions],
+      mode: preset.mode || 'copy',
+      duplicate_policy: preset.duplicate_policy || 'auto_rename',
+      allow_overwrite: preset.duplicate_policy === 'overwrite',
+    }));
+    setActiveTab('filter');
+    showToast(`Đã áp dụng bộ lọc mẫu "${preset.name}".`, 'success');
+  };
+
+  const handleUndoComplete = () => {
+    if (currentSource) {
+      autoDetectExtensions(currentSource, config.recursive, currentDest, true);
+      runAutoPreview(config);
+    }
+  };
+
   return (
-    <div className="h-screen flex flex-col bg-[var(--bg-main)] text-[var(--text-main)] font-sans overflow-hidden transition-colors duration-200">
-      {/* App Top Menu Header (44px Height) */}
-      <header className="h-11 bg-[var(--bg-panel)] border-b border-[var(--border-subtle)] px-4 flex items-center justify-between shrink-0 select-none z-20 transition-colors duration-200">
-        {/* Brand Logo & Name */}
-        <div className="flex items-center gap-2.5">
-          <div className="w-6 h-6 rounded-[3px] bg-amber-500 flex items-center justify-center text-black font-bold">
-            <Camera className="w-3.5 h-3.5 stroke-[2.5]" />
+    <div className="h-[100dvh] flex flex-col bg-[var(--bg-main)] text-[var(--text-main)] font-sans overflow-hidden">
+      {/* App Top Bar (48px height, single-line desktop nav) */}
+      <header className="h-12 bg-[var(--bg-panel)] border-b border-[var(--border-subtle)] px-4 flex items-center justify-between gap-3 shrink-0 select-none z-20">
+        {/* Brand */}
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className="w-7 h-7 rounded-[4px] bg-[var(--accent)] flex items-center justify-center text-[var(--accent-text)] shrink-0">
+            <Camera className="w-4 h-4 stroke-[2.25]" />
           </div>
-          <span className="text-sm font-bold text-[var(--text-main)] tracking-tight">
+          <span className="text-sm font-bold text-[var(--text-main)] tracking-tight truncate">
             ShutterFilter by Tandev.foto
           </span>
         </div>
 
-        {/* Navigation Tabs - Segmented Switcher */}
-        <nav className="segmented-control">
+        {/* Navigation Tabs */}
+        <nav className="segmented-control shrink-0" aria-label="Điều hướng chính">
           <button
             type="button"
             onClick={() => setActiveTab('filter')}
-            className={`segmented-item ${activeTab === 'filter' ? 'active' : ''} flex items-center gap-1.5`}
+            className={`segmented-item ${
+              activeTab === 'filter' ? 'active' : ''
+            } flex items-center gap-1.5`}
           >
-            <Filter className="w-3.5 h-3.5 text-amber-500" />
-            <span>Lọc & Sắp Xếp</span>
+            <Filter className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <span>Lọc &amp; Sắp Xếp</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab('presets')}
+            className={`segmented-item ${
+              activeTab === 'presets' ? 'active' : ''
+            } flex items-center gap-1.5`}
+          >
+            <Bookmark className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <span>Bộ Lọc Mẫu</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('history')}
-            className={`segmented-item ${activeTab === 'history' ? 'active' : ''} flex items-center gap-1.5`}
+            className={`segmented-item ${
+              activeTab === 'history' ? 'active' : ''
+            } flex items-center gap-1.5`}
           >
-            <History className="w-3.5 h-3.5 text-amber-500" />
-            <span>Lịch Sử & Undo</span>
+            <History className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <span>Lịch Sử &amp; Undo</span>
           </button>
         </nav>
 
-        {/* Dark / Light Mode Toggle Button (Positioned at Top-Right Red Box Area) */}
+        {/* Theme Switcher */}
         <button
           type="button"
           onClick={toggleTheme}
-          className="flex items-center gap-1.5 px-3 py-1 rounded-[4px] bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] text-xs font-mono text-[var(--text-main)] border border-[var(--border-subtle)] transition-all duration-150 cursor-pointer active:scale-95 shadow-sm"
-          title={theme === 'dark' ? 'Chuyển sang Giao diện Sáng (Light Mode)' : 'Chuyển sang Giao diện Tối (Dark Mode)'}
+          className="btn-secondary-pro py-1.5 px-3 text-xs font-mono shrink-0"
+          title={
+            theme === 'dark'
+              ? 'Chuyển sang Giao diện Sáng'
+              : 'Chuyển sang Giao diện Tối'
+          }
         >
           {theme === 'dark' ? (
             <>
-              <Sun className="w-3.5 h-3.5 text-amber-400" />
-              <span className="text-amber-400 font-semibold">Giao diện Sáng</span>
+              <Sun className="w-3.5 h-3.5 text-[var(--accent)]" />
+              <span className="text-[var(--accent-strong)] font-semibold hidden sm:inline">
+                Giao diện Sáng
+              </span>
             </>
           ) : (
             <>
-              <Moon className="w-3.5 h-3.5 text-amber-600" />
-              <span className="text-zinc-700 font-semibold">Giao diện Tối</span>
+              <Moon className="w-3.5 h-3.5 text-[var(--accent)]" />
+              <span className="text-[var(--text-main)] font-semibold hidden sm:inline">
+                Giao diện Tối
+              </span>
             </>
           )}
         </button>
       </header>
 
-      {/* Main App Workspace */}
-      <main className="flex-1 overflow-hidden p-3 bg-[var(--bg-main)]">
+      {/* Main Workspace */}
+      <main className="flex-1 min-h-0 overflow-y-auto md:overflow-hidden p-3 bg-[var(--bg-main)]">
         {activeTab === 'filter' && (
-          <div className="h-full grid grid-cols-1 lg:grid-cols-12 gap-3 items-stretch">
-            {/* Left Control Sidebar (4/12 width = ~380px) */}
-            <div className="lg:col-span-5 xl:col-span-4 flex flex-col space-y-3 overflow-y-auto pr-1">
+          <div className="h-full grid grid-cols-1 md:grid-cols-12 gap-3 items-stretch min-h-0">
+            {/* Left Control Sidebar */}
+            <div className="md:col-span-5 xl:col-span-4 flex flex-col gap-3 md:overflow-y-auto md:pr-1 min-h-0">
               <FolderPicker
                 config={config}
                 onChange={handleConfigChange}
-                isScanning={isScanning}
+                onRefreshSource={handleRefreshSource}
+                isScanning={isDetectingExts || isPreviewLoading}
+                hasPathConflict={hasPathConflict}
               />
 
               <FilterCriteria
                 config={config}
                 onChange={handleConfigChange}
                 detectedExtensions={detectedExtensions}
+                unmatchedKeywords={previewResult?.unmatchedKeywords || []}
+                onNotify={showToast}
               />
 
-              <ModeAndPolicy
-                config={config}
-                onChange={handleConfigChange}
-              />
+              <ModeAndPolicy config={config} onChange={handleConfigChange} />
             </div>
 
-            {/* Right Preview Workstation Hub (7-8/12 width) */}
-            <div className="lg:col-span-7 xl:col-span-8 h-full overflow-hidden">
+            {/* Right Preview Hub */}
+            <div className="md:col-span-7 xl:col-span-8 min-h-[420px] md:min-h-0 h-full overflow-hidden">
               <PreviewTable
                 config={config}
                 previewResult={previewResult}
                 onExecute={handleExecuteRun}
-                isLoading={isScanning || isExecuting}
+                isLoading={isDetectingExts || isPreviewLoading || isExecuting}
+                scanError={scanError}
+                hasPathConflict={hasPathConflict}
               />
             </div>
+          </div>
+        )}
+
+        {activeTab === 'presets' && (
+          <div className="h-full overflow-y-auto max-w-6xl mx-auto">
+            <PresetManager
+              currentConfig={config}
+              onApplyPreset={handleApplyPreset}
+              onNotify={showToast}
+            />
           </div>
         )}
 
         {activeTab === 'history' && (
           <div className="h-full overflow-y-auto max-w-6xl mx-auto">
-            <HistoryView />
+            <HistoryView
+              onUndoComplete={handleUndoComplete}
+              onNotify={showToast}
+            />
           </div>
         )}
       </main>
 
-      {/* Realtime Toast Notification Banner */}
-      {toastMessage && (
-        <div className="fixed bottom-4 right-4 z-50 animate-fade-in">
-          <div className="bg-[var(--bg-card)] text-[var(--text-main)] text-xs px-4 py-2.5 rounded-lg border border-[var(--border-subtle)] shadow-2xl flex items-center gap-2">
-            <Info className="w-4 h-4 text-amber-400 shrink-0" />
-            <span>{toastMessage}</span>
+      {/* Typed Dismissible Toast Notification (Top-Right below header so pagination is never occluded) */}
+      {toast && (
+        <div className="fixed top-14 right-4 z-50 animate-fade-in max-w-md">
+          <div
+            className={`bg-[var(--bg-card)] text-[var(--text-main)] text-xs px-3.5 py-2.5 rounded-[6px] border shadow-xl flex items-center gap-2.5 ${
+              toast.type === 'success'
+                ? 'border-[var(--status-success-border)]'
+                : toast.type === 'error'
+                ? 'border-[var(--status-danger-border)]'
+                : toast.type === 'warning'
+                ? 'border-[var(--status-warning-border)]'
+                : 'border-[var(--border-subtle)]'
+            }`}
+          >
+            {toast.type === 'success' ? (
+              <CheckCircle2 className="w-4 h-4 text-[var(--status-success)] shrink-0" />
+            ) : toast.type === 'error' ? (
+              <XCircle className="w-4 h-4 text-[var(--status-danger)] shrink-0" />
+            ) : toast.type === 'warning' ? (
+              <AlertTriangle className="w-4 h-4 text-[var(--status-warning)] shrink-0" />
+            ) : (
+              <Info className="w-4 h-4 text-[var(--accent)] shrink-0" />
+            )}
+            <span className="leading-snug">{toast.message}</span>
+            <button
+              type="button"
+              onClick={() => setToast(null)}
+              className="text-[var(--text-dim)] hover:text-[var(--text-main)] cursor-pointer ml-1 shrink-0"
+              title="Đóng thông báo"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
       )}
@@ -367,6 +585,7 @@ export const App: React.FC = () => {
           config={config}
           onCancel={handleCancelExecution}
           onClose={() => setShowExecutionModal(false)}
+          onNotify={showToast}
         />
       )}
     </div>

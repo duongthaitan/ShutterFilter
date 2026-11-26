@@ -9,12 +9,12 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/duongthaitan/ShutterFilter/releases"><img src="https://img.shields.io/badge/phiên_bản-1.0.0-f59e0b?style=flat-square" alt="Version" /></a>
+  <a href="https://github.com/duongthaitan/ShutterFilter/releases"><img src="https://img.shields.io/badge/phiên_bản-1.1.0-f59e0b?style=flat-square" alt="Version" /></a>
   <img src="https://img.shields.io/badge/electron-33-47848f?style=flat-square&logo=electron&logoColor=white" alt="Electron" />
   <img src="https://img.shields.io/badge/react-18-61dafb?style=flat-square&logo=react&logoColor=white" alt="React" />
   <img src="https://img.shields.io/badge/tailwind-v4-38bdf8?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind" />
   <img src="https://img.shields.io/badge/typescript-strict-3178c6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/tests-17%2F17_passed-10b981?style=flat-square" alt="Tests" />
+  <img src="https://img.shields.io/badge/tests-28%2F28_passed-10b981?style=flat-square" alt="Tests" />
   <img src="https://img.shields.io/badge/giấy_phép-MIT-blue?style=flat-square" alt="License" />
 </p>
 
@@ -111,17 +111,17 @@ Kết quả khớp hiển thị trực tiếp ngay khi dán danh sách, trước
 
 | Tính năng | Mô tả |
 |:---|:---|
-| **Đọc & Xem trước ảnh RAW trực tiếp** | Giải mã & trích xuất ảnh xem trước độ phân giải cao cho tất cả định dạng RAW máy ảnh (`.cr2`, `.cr3`, `.arw`, `.nef`, `.dng`, `.raf`, `.orf`, `.rw2`, `.pef`) |
-| **Thuật toán Chọn Preview Max Area** | Tự động quét phân đoạn nhị phân JPEG (JPEG Segment Parser), chọn bản preview có diện tích pixel lớn nhất (5760x3840, 1616x1080) thay vì thumbnail EXIF 160x120 nhỏ |
-| **Khung xem ảnh Studio Lightbox** | Giao diện phông nền tối chuyên nghiệp `#111114`, mở rộng ảnh vừa vặn 88vw × 78vh không bị viền thừa |
-| **Đối chiếu thời gian thực** | Kết quả cập nhật ngay khi dán hoặc nhập tên ảnh |
-| **Nhận diện định dạng tự động** | Quét thư mục nguồn, hiển thị các đuôi ảnh tồn tại (`.jpg`, `.cr3`, `.arw`, `.nef`, `.dng`...) |
-| **Bộ lọc đuôi ảnh linh hoạt** | Mặc định tất cả đuôi ảnh đều tắt — nghĩa là bao gồm tất cả định dạng. Bật riêng nếu muốn thu hẹp kết quả |
+| **Đọc & Xem trước ảnh RAW trực tiếp** | Giải mã & trích xuất ảnh xem trước độ phân giải cao cho 13 định dạng RAW máy ảnh (`.cr2`, `.cr3`, `.arw`, `.nef`, `.dng`, `.raf`, `.orf`, `.rw2`, `.pef`, `.srw`, `.x3f`, `.erf`, `.mrw`) |
+| **Thuật toán Chọn Preview Max Area** | Tự động quét phân đoạn nhị phân JPEG chuẩn ISO/IEC 10918-1 (hỗ trợ cả JPEG Progressive), chọn bản preview có diện tích pixel lớn nhất (5760x3840, 1616x1080) thay vì thumbnail EXIF 160x120 |
+| **Khung xem ảnh Studio Lightbox** | Hiển thị toàn màn hình nền tối `#111114`, hỗ trợ phím tắt `←` / `→` chuyển ảnh, `Space` phóng to/thu nhỏ, `Esc` đóng và mở nhanh vị trí file trong Explorer |
+| **Đối chiếu thông minh & Cảnh báo thiếu** | Hỗ trợ chế độ khớp `Chứa` / `Bắt đầu` / `Chính xác`, nút **Chuẩn hóa** danh sách (tách dấu phẩy, bỏ đuôi file, lọc trùng), chọn/bỏ từng ảnh và cảnh báo + sao chép danh sách tên ảnh chưa tìm thấy |
+| **Kéo thả thư mục & Quét siêu tốc** | Kéo thả thư mục trực tiếp vào ô Nguồn/Đích, tạo nhanh `/Da_Loc`, tự động loại trừ thư mục đích nằm trong nguồn, quét song song có cache EXIF |
+| **Tùy chọn nâng cao & Bộ lọc mẫu (Presets)** | Tùy chọn xử lý trùng tên (`Đổi tên` / `Bỏ qua` / `Ghi đè`), chia thư mục con (`Định dạng` / `Ngày chụp` / `Từ khóa`), di chuyển an toàn khác ổ đĩa (`EXDEV`) và lưu/áp dụng nhanh các Bộ Lọc Mẫu |
 | **Loại trừ video** | `.mp4`, `.mov`, `.avi`, `.mkv` luôn bị loại khỏi kết quả |
-| **Phân trang hiệu năng cao** | 50 / 100 / 250 / 500 dòng mỗi trang cho kho ảnh hàng nghìn file |
-| **Nhật ký & Hoàn tác (Undo)** | Ghi log đầy đủ từng lần chạy, cho phép khôi phục vị trí file ban đầu |
-| **Chuyển đổi Dark / Light Theme** | Tùy chọn giao diện tối/sáng góc trên bên phải, lưu tự động vào localStorage |
-| **File .exe độc lập** | Đóng gói thành 1 file `.exe` duy nhất (~116 MB), chạy ngay không cần cài đặt |
+| **Phân trang & Sắp xếp hiệu năng cao** | 50 / 100 / 250 / 500 dòng mỗi trang kèm sắp xếp theo tên, định dạng, dung lượng, ngày chụp |
+| **Nhật ký & Hoàn tác (Undo)** | Ghi log nguyên tử (atomic write), lọc trạng thái file, khôi phục vị trí file ban đầu kể cả khác ổ đĩa |
+| **Chuyển đổi Dark / Light Theme** | Giao diện tối/sáng đạt chuẩn tương phản WCAG AA, khởi động không nháy màn hình, hoạt động 100% offline |
+| **File .exe độc lập (Portable)** | Đóng gói thành 1 file `.exe` duy nhất (~116-122 MB), chép USB/máy khác chạy ngay không cần cài đặt |
 
 ---
 
@@ -253,7 +253,7 @@ npm install
 # Chạy chế độ dev (cửa sổ Electron, hot reload)
 npm run dev
 
-# Chạy bộ test (17 tests, unit + E2E)
+# Chạy bộ test (28 tests, unit + E2E + regression)
 npm test
 
 # Đóng gói thành 1 file .exe

@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { app } from 'electron';
 import { Preset, RunLog, UndoResult } from '../shared/types';
+import { moveFileSafe } from './fsUtils';
 
 interface StorageData {
   presets: Preset[];
@@ -10,6 +11,7 @@ interface StorageData {
 }
 
 const SCHEMA_VERSION = 1;
+const MAX_HISTORY_ENTRIES = 100;
 
 function getStoreFilePath(): string {
   const userDataPath = app ? app.getPath('userData') : process.cwd();
@@ -25,8 +27,8 @@ function loadData(): StorageData {
     const raw = fs.readFileSync(filePath, 'utf-8');
     const parsed = JSON.parse(raw);
     return {
-      presets: parsed.presets || [],
-      history: parsed.history || [],
+      presets: Array.isArray(parsed.presets) ? parsed.presets : [],
+      history: Array.isArray(parsed.history) ? parsed.history : [],
       schema_version: parsed.schema_version || SCHEMA_VERSION,
     };
   } catch (err) {
@@ -42,7 +44,10 @@ function saveData(data: StorageData): void {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+    // Atomic write via temp file to avoid corrupting JSON on sudden crash
+    const tempPath = `${filePath}.${process.pid}.tmp`;
+    fs.writeFileSync(tempPath, JSON.stringify(data, null, 2), 'utf-8');
+    fs.renameSync(tempPath, filePath);
   } catch (err) {
     console.error('Failed to save store file:', err);
   }
@@ -53,7 +58,9 @@ export function listPresets(): Preset[] {
   return loadData().presets;
 }
 
-export function savePreset(presetData: Omit<Preset, 'id' | 'created_at' | 'schema_version'> & { id?: string }): Preset {
+export function savePreset(
+  presetData: Omit<Preset, 'id' | 'created_at' | 'schema_version'> & { id?: string }
+): Preset {
   const data = loadData();
   let preset: Preset;
 
@@ -113,7 +120,21 @@ export function getHistoryEntry(runId: string): RunLog | undefined {
 export function saveRunLog(log: RunLog): void {
   const data = loadData();
   data.history.unshift(log);
+  if (data.history.length > MAX_HISTORY_ENTRIES) {
+    data.history = data.history.slice(0, MAX_HISTORY_ENTRIES);
+  }
   saveData(data);
+}
+
+export function deleteHistoryEntry(runId: string): boolean {
+  const data = loadData();
+  const initialLen = data.history.length;
+  data.history = data.history.filter((h) => h.run_id !== runId);
+  if (data.history.length !== initialLen) {
+    saveData(data);
+    return true;
+  }
+  return false;
 }
 
 export async function undoRun(runId: string): Promise<UndoResult> {
@@ -164,14 +185,13 @@ export async function undoRun(runId: string): Promise<UndoResult> {
           deletedCount++;
         }
       } else if (log.mode === 'move') {
-        // Move mode: move file back from destination to source
+        // Move mode: move file back from destination to source (supports cross-drive EXDEV)
         if (fs.existsSync(entry.destination)) {
-          // Ensure source parent directory exists
           const sourceDir = path.dirname(entry.source);
           if (!fs.existsSync(sourceDir)) {
             await fs.promises.mkdir(sourceDir, { recursive: true });
           }
-          await fs.promises.rename(entry.destination, entry.source);
+          await moveFileSafe(entry.destination, entry.source);
           restoredCount++;
         } else {
           errorCount++;
@@ -184,9 +204,12 @@ export async function undoRun(runId: string): Promise<UndoResult> {
     }
   }
 
-  // Mark run as undone
-  data.history[logIdx].undone = true;
-  saveData(data);
+  // Only mark undone if at least some work succeeded or there were no errors
+  const totalAffected = restoredCount + deletedCount;
+  if (errorCount === 0 || totalAffected > 0) {
+    data.history[logIdx].undone = true;
+    saveData(data);
+  }
 
   return {
     success: errorCount === 0,
